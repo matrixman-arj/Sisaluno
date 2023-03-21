@@ -1,0 +1,14 @@
+<script id="template-autocomplete-curso" type="text/x-handlebars-template">
+	<div class="sc-tabela-item">
+		<div class="sc-tabela-item__coluna  sc-tabela-item__coluna--foto">
+			<img th:src="@{/fotos/thumbnail.divisa-mock.png}" class="img-responsive" />
+		</div>
+		<div class="sc-tabela-item__coluna  sc-tabela-item__coluna--detalhes">
+			<span class="sc-tabela-curso-categoria">{{categoria}}</span>
+			<span class="label  label-default">{{area}}</span>			
+		</div>
+		<div class="sc-tabela-item__coluna  sc-tabela-item__coluna--valores">
+			<div class="sc-tabela-curso-valor-medio">Nota{{valorFormatado}}</div>
+		</div>
+	</div>
+</script>
