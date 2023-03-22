@@ -11,7 +11,7 @@ Sisaluno.Autocomplete = (function() {
 	Autocomplete.prototype.iniciar = function() {
 		var options = {
 			url: function(categoria) {
-				return '/sisaluno/cursos?categoria=' + categoria.descricao;
+				return '/sisaluno/cursos?categoria=' + categoria;
 			},
 			getValue: 'categoria',
 			minCharNumber: 3,

@@ -94,6 +94,12 @@
 ###################
 */
 
+/* Colunas comuns */
+.table-col-acoes {
+	width: 80px;
+}
+
+
 /* Colunas - Pesquisa de Usuários */
 
 .sc-title-page h1 {
@@ -145,12 +151,12 @@
 }
 
 
-/* Tabela Pacientes página de Casos */
-.sc-tabela-casos {
+/* Tabela Cursos página de Matriculas */
+.sc-tabela-matriculas {
 	margin-bottom: 15px;
 }
 
-.sc-tabela-casos__vazio {
+.sc-tabela-matriculas__vazia {
 	padding: 15px 15px;
 	
 	border: 1px dashed #ddd;
@@ -189,8 +195,8 @@
 
 
 
-/* Tabela Item */
-.sc-tabela-item {
+/* Tabela curso */
+.sc-tabela-curso {
 	position: relative; /* Para que o painel de exclusão apareça dentro da linha */
 	
 	padding: 15px 0;
@@ -201,78 +207,78 @@
 	-ms-user-select: none;
 }
 
-.sc-tabela-item:after {
+.sc-tabela-curso:after {
 	clear: both;
 	display: block;
     content: "";
 }
 
-.sc-tabela-item ~ .sc-tabela-item {
+.sc-tabela-curso ~ .sc-tabela-curso {
 	border-top: 1px solid #ddd;
 }
 
-.sc-tabela-item__coluna {
+.sc-tabela-curso__coluna {
 	padding: 0 10px;
 }
 
-.sc-tabela-item__coluna--foto {
+.sc-tabela-curso__coluna--foto {
 	float: left;
 	width: 60px;
 	
 	text-align: center;
 }
 
-.sc-tabela-item__coluna--valores {
+.sc-tabela-curso__coluna--valores {
 	padding-right: 0px;
 }
 
-.sc-tabela-item__coluna--detalhes, .sc-tabela-item__coluna--valores {
+.sc-tabela-curso__coluna--detalhes, .sc-tabela-curso__coluna--valores {
 	margin-left: 60px;
 }
 
-.sc-tabela-paciente-nome {
+.sc-tabela-curso-nome {
 	font-weight: 500;
 	font-size: 1.1em;
 	display: block;
 }
 
-.sc-tabela-paciente-om {
+.sc-tabela-curso-om {
 	color: #aaa;
 	display: block;
 	font-weight: 200;
 }
 
-.sc-tabela-paciente-campo-quantidade {
+.sc-tabela-curso-campo-quantidade {
 	width: 30px;
 	text-align: right;
 }
 
-.sc-tabela-paciente-valor-pequeno {
+.sc-tabela-curso-valor-pequeno {
 	font-weight: 300;
 	font-size: 1em;
 }
 
-.sc-tabela-paciente-valor-medio {
+.sc-tabela-curso-valor-medio {
 	font-weight: 300;
 	font-size: 1.3em;
 }
 
-.sc-tabela-paciente-valor-grande {
+.sc-tabela-curso-valor-grande {
 	font-weight: 300;
 	font-size: 1.6em;
 }
 
 @media (min-width: 768px) { /* screen-sm-min */
-	.sc-tabela-item__coluna {
+	.sc-tabela-curso__coluna {
 		float: left;
 		margin-left: 0px;
 	}
 	
-	.sc-tabela-item__coluna--detalhes {
+	.sc-tabela-curso__coluna--detalhes {
 		width: calc(70% - 30px);
 	}
 	
-	.sc-tabela-item__coluna--valores {
+	.sc-tabela-curso__coluna--valores {
 		width: calc(30% - 30px);
 
 		text-align: right;

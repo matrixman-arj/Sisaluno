@@ -455,6 +455,13 @@ public class Curso implements Serializable{
 
 	public void setNovaFoto(boolean novaFoto) {
 		this.novaFoto = novaFoto;
-	}	
+	}
+	
+	public BigDecimal getNotaTfm() {
+		BigDecimal nota = getTfm().add(tfm2).add(tfm3);
+		BigDecimal d = new BigDecimal("3");
+		nota = nota.divide(d);
+		return getNotaTfm();
+	}
     
 }
