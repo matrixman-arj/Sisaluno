@@ -139,6 +139,8 @@ public class Curso implements Serializable{
     @Column
     private BigDecimal tfm3;
     
+    private BigDecimal notaTfm;
+    
     @Column(name = "situacao_no_curso_descr")
     private String situacaoNoCursoDescr;
     
@@ -399,6 +401,12 @@ public class Curso implements Serializable{
 
 	public void setTfm3(BigDecimal tfm3) {
 		this.tfm3 = tfm3;
+	}
+	
+	
+
+	public void setNotaTfm(BigDecimal notaTfm) {
+		this.notaTfm = notaTfm;
 	}
 
 	public String getSituacaoNoCursoDescr() {

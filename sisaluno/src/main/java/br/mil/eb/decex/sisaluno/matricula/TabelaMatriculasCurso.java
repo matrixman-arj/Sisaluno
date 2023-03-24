@@ -26,6 +26,8 @@ public class TabelaMatriculasCurso {
 		matriculaCurso.setTfm2(tfm2);
 		matriculaCurso.setTfm3(tfm3);
 		matriculaCurso.setNotaTfm(curso.getNotaTfm());
+		
+		matriculas.add(matriculaCurso);
 	}
 
 }
