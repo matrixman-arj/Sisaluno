@@ -39,15 +39,15 @@ public class TabelaMatriculasCursoTest {
 	public void deveCalcularNotaComVariosTfm() throws Exception {
 		Curso curso = new Curso();
 		BigDecimal nota = new BigDecimal("8.9");
-		curso.setTfm(nota);
+//		curso.setTfm(nota);
 		
 		Curso curso1 = new Curso();
 		BigDecimal nota2 = new BigDecimal("4.9");
-		curso1.setTfm2(nota2);
+//		curso1.setTfm2(nota2);
 		
 		Curso curso2 = new Curso();
 		BigDecimal nota3 = new BigDecimal("7.9");
-		curso2.setTfm3(nota3);
+//		curso2.setTfm3(nota3);
 		
 		tabelaMatriculasCurso.adicionarCurso(curso, nota, BigDecimal.ZERO, BigDecimal.ZERO);
 		

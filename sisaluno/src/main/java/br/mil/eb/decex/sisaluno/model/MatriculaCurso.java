@@ -35,12 +35,12 @@ import br.mil.eb.decex.sisaluno.enumerated.Periodo;
 import br.mil.eb.decex.sisaluno.enumerated.QCOCurso;
 
 @Entity
-@Table(name = "matricula_curso", schema = "ensino")
+@Table(name = "matricula_aluno_curso", schema = "ensino")
 public class MatriculaCurso {
 	
 	@Id
-    @SequenceGenerator(name = "ENSINO.MATRICULA_CURSO_CODIGO_GENERATOR", sequenceName = "ENSINO.MATRICULA_CURSO_CODIGO_SEQ",  allocationSize = 1)
-    @GeneratedValue(        strategy = GenerationType.SEQUENCE, generator = "ENSINO.MATRICULA_CURSO_CODIGO_GENERATOR")
+    @SequenceGenerator(name = "ENSINO.MATRICULA_ALUNO_CURSO_CODIGO_GENERATOR", sequenceName = "ENSINO.MATRICULA_ALUNO_CURSO_CODIGO_SEQ",  allocationSize = 1)
+    @GeneratedValue(        strategy = GenerationType.SEQUENCE, generator = "ENSINO.MATRICULA_ALUNO_CURSO_CODIGO_GENERATOR")
     private Long codigo;
 	
 	private Curso curso;
@@ -48,11 +48,11 @@ public class MatriculaCurso {
 	private String ano;
 	
 	@Enumerated(EnumType.STRING)
-    @NotNull(message = "Escolha uma catgoria")
+    @NotNull(message = "Escolha um universo")
     private Categoria categoria;
 	
-	@Column(name = "categoria_descr")
-    private String categoriaDescr;
+	@Column(name = "universo_descr")
+    private String universoDescr;
 	
 	@Enumerated(EnumType.STRING)
     @Column(name = "cfgs_curso")
@@ -140,7 +140,7 @@ public class MatriculaCurso {
     @Column
     private BigDecimal tfm3;
     
-    private BigDecimal notaTfm;
+//    private BigDecimal notaTfm;
     
     @Column(name = "situacao_no_curso_descr")
     private String situacaoNoCursoDescr;
@@ -182,19 +182,17 @@ public class MatriculaCurso {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-
-	public String getCategoriaDescr() {
-		return categoriaDescr;
+	
+	public String getUniversoDescr() {
+		return universoDescr;
 	}
-
-	public void setCategoriaDescr(String categoriaDescr) {
-		this.categoriaDescr = categoriaDescr;
+	public void setUniversoDescr(String universoDescr) {
+		this.universoDescr = universoDescr;
 	}
 
 	public CFGSCurso getCfgsCurso() {
 		return cfgsCurso;
 	}
-
 	public void setCfgsCurso(CFGSCurso cfgsCurso) {
 		this.cfgsCurso = cfgsCurso;
 	}
@@ -202,7 +200,6 @@ public class MatriculaCurso {
 	public CFGOCurso getCfgoCurso() {
 		return cfgoCurso;
 	}
-
 	public void setCfgoCurso(CFGOCurso cfgoCurso) {
 		this.cfgoCurso = cfgoCurso;
 	}
@@ -210,7 +207,6 @@ public class MatriculaCurso {
 	public MatBelCurso getMatbelCurso() {
 		return matbelCurso;
 	}
-
 	public void setMatbelCurso(MatBelCurso matbelCurso) {
 		this.matbelCurso = matbelCurso;
 	}
@@ -218,7 +214,6 @@ public class MatriculaCurso {
 	public OficiaisCurso getOficiaisCurso() {
 		return oficiaisCurso;
 	}
-
 	public void setOficiaisCurso(OficiaisCurso oficiaisCurso) {
 		this.oficiaisCurso = oficiaisCurso;
 	}
@@ -226,7 +221,6 @@ public class MatriculaCurso {
 	public String getArea() {
 		return area;
 	}
-
 	public void setArea(String area) {
 		this.area = area;
 	}
@@ -234,7 +228,6 @@ public class MatriculaCurso {
 	public CPORCurso getCporCurso() {
 		return cporCurso;
 	}
-
 	public void setCporCurso(CPORCurso cporCurso) {
 		this.cporCurso = cporCurso;
 	}
@@ -242,7 +235,6 @@ public class MatriculaCurso {
 	public MedicoCurso getMedicoCurso() {
 		return medicoCurso;
 	}
-
 	public void setMedicoCurso(MedicoCurso medicoCurso) {
 		this.medicoCurso = medicoCurso;
 	}
@@ -250,7 +242,6 @@ public class MatriculaCurso {
 	public QCOCurso getQcoCurso() {
 		return qcoCurso;
 	}
-
 	public void setQcoCurso(QCOCurso qcoCurso) {
 		this.qcoCurso = qcoCurso;
 	}
@@ -258,7 +249,6 @@ public class MatriculaCurso {
 	public ODONTOCurso getOdontoCurso() {
 		return odontoCurso;
 	}
-
 	public void setOdontoCurso(ODONTOCurso odontoCurso) {
 		this.odontoCurso = odontoCurso;
 	}
@@ -266,7 +256,6 @@ public class MatriculaCurso {
 	public String getEspecialidade() {
 		return especialidade;
 	}
-
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
 	}
@@ -360,9 +349,9 @@ public class MatriculaCurso {
 	}
 	
 
-	public void setNotaTfm(BigDecimal notaTfm) {
-		this.notaTfm = notaTfm;
-	}
+//	public void setNotaTfm(BigDecimal notaTfm) {
+//		this.notaTfm = notaTfm;
+//	}
 
 	public String getSituacaoNoCursoDescr() {
 		return situacaoNoCursoDescr;

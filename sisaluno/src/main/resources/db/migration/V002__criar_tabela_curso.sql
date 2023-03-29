@@ -1,7 +1,8 @@
 CREATE TABLE ensino.curso (	
 	codigo serial NOT NULL,
-	categoria character varying(255),
-	categoria_descr character varying(100),
+	SKU character varying(50),
+	universo character varying(255),
+	universo_descr character varying(100),
 	cfgs_curso character varying(100),
     cfgo_curso character varying(100),
     matbel_curso character varying(100),
