@@ -1,4 +1,4 @@
-CREATE TABLE ensino.matricula_aluno_curso(
+CREATE TABLE ensino.matricula(
 	codigo serial NOT NULL,	
 	om_codigo bigint NOT NULL,
 	data_inicio_curso DATE,
@@ -13,6 +13,6 @@ CREATE TABLE ensino.matricula_aluno_curso(
 	situacao_no_curso character varying(100),	
 	situacao_no_curso_descr character varying(100),
 	
-	CONSTRAINT curso_pkey PRIMARY KEY (codigo),	
+	CONSTRAINT matricula_pkey PRIMARY KEY (codigo)	
 	
 );

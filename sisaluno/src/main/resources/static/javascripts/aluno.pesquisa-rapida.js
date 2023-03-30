@@ -71,6 +71,7 @@ Sisaluno.TabelaAlunoPesquisaRapida = (function() {
 		
 		var alunoSelecionado = $(evento.currentTarget);
 		$('#cpfAluno').val(alunoSelecionado.data('cpf'));
+		$('#nomeAluno').val(alunoSelecionado.data('nome'));
 		$('#codigoAluno').val(alunoSelecionado.data('codigo'));
 	}
 	
