@@ -5,6 +5,7 @@ Sisaluno.PesquisaRapidaAluno = (function() {
 	function PesquisaRapidaAluno() {
 		this.pesquisaRapidaAlunosModal = $('#pesquisaRapidaAlunos');
 		this.cpfInput = $('#cpfAlunoModal');
+		this.nomeInput = $('#nomeAlunoModal');
 		this.pesquisaRapidaBtn = $('.js-pesquisa-rapida-alunos-btn'); 
 		this.containerTabelaPesquisa = $('#containerTabelaPesquisaRapidaAlunos');
 		this.htmlTabelaPesquisa = $('#tabela-pesquisa-rapida-aluno').html();
@@ -30,6 +31,7 @@ Sisaluno.PesquisaRapidaAluno = (function() {
 			method: 'GET',
 			contentType: 'application/json',
 			data: {
+				nome: this.nomeInput.val(),
 				cpf: this.cpfInput.val()
 			}, 
 			success: onPesquisaConcluida.bind(this),
@@ -70,8 +72,8 @@ Sisaluno.TabelaAlunoPesquisaRapida = (function() {
 		this.modalAluno.modal('hide');
 		
 		var alunoSelecionado = $(evento.currentTarget);
-		$('#cpfAluno').val(alunoSelecionado.data('cpf'));
 		$('#nomeAluno').val(alunoSelecionado.data('nome'));
+		$('#cpfAluno').val(alunoSelecionado.data('cpf'));
 		$('#codigoAluno').val(alunoSelecionado.data('codigo'));
 	}
 	

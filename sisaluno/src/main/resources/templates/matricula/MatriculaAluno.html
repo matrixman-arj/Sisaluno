@@ -18,7 +18,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-10">
-					<h1>Matricula de aluno</h1>
+					<h1>Matricula de aluno</h1>					
 				</div>
 			</div>
 		</div>
@@ -75,12 +75,9 @@
 							<span class="js-tooltip">27/11/2026</span>
 							
 						</div>
-						<div class="decex-box__title">Previsão de término</div>
-						
-						
+						<div class="decex-box__title">Previsão de término</div>												
 					</div>
-				</div>
-				
+				</div>				
 			</div>
 			
 			<div class="row">
@@ -93,8 +90,7 @@
 				<div class="form-group  col-sm-6">
 					<label class="control-label" for="cpfAluno">CPF</label>
 					<div class="input-group">
-				      <input id="cpfAluno" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o aluno"/>
-				     
+				      <input id="nomeAluno" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o aluno"/>				      
 				      <input id="codigoAluno" type="hidden"/>
 				      <span class="input-group-btn">
 				        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada"
@@ -106,12 +102,9 @@
 				</div>
 				
 				<div class="form-group  col-sm-6">
-					<label class="control-label" for="nomeAluno">Nome</label>
-									     
-				      <input id="nomeAluno" type="text" class="form-control"/>			      
-				   			    
-				</div>
-				
+					<label class="control-label" for="nomeAluno">Nome</label>									     
+				    <input id="nomeAluno" type="text" th:text="${aluno}" readonly="readonly" class="form-control"/>			   			    
+				</div>				
 			</div>
 				
 			<div class="row">
