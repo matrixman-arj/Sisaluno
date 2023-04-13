@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -25,7 +24,6 @@ import org.springframework.util.StringUtils;
 
 import br.mil.eb.decex.sisaluno.dto.CursoDTO;
 import br.mil.eb.decex.sisaluno.model.Curso;
-import br.mil.eb.decex.sisaluno.model.Usuario;
 import br.mil.eb.decex.sisaluno.repository.filter.CursoFilter;
 import br.mil.eb.decex.sisaluno.repository.paginacao.PaginacaoUtilJPA;
 import br.mil.eb.decex.sisaluno.security.UsuarioSistema;
@@ -78,8 +76,8 @@ public class CursosImpl implements CursosQueries {
 	/*############################--INÍCIO DO ANTIGO MÉTODO ADICIONAR FILTRO--###########################################**/
 	private void adicionarFiltro(CursoFilter filtro, Criteria criteria) {
 		if(filtro != null) {
-			if(!StringUtils.isEmpty(filtro.getCpf())) {
-				criteria.add(Restrictions.eq("cpf", filtro.getCpf()));
+			if(!StringUtils.isEmpty(filtro.getSku())) {
+				criteria.add(Restrictions.eq("sku", filtro.getSku()));
 			}
 		}
 	}
@@ -88,14 +86,14 @@ public class CursosImpl implements CursosQueries {
 
 	
 	/*############################--INÍCIO DO NOVO MÉTODO ADICIONAR FILTRO--###########################################
-	 * Método responsável por fazer a filtragem pelo CPF, a partir dos dados digitados pelo usuário,
+	 * Método responsável por fazer a filtragem pelo SKU, a partir dos dados digitados pelo usuário,
 	 * recebido aqui através do CursoFilter que armazena o que recebeu, na variável a qual demos o nome de filtro.
 	 * Este método foi extraído do método filtrar, para que possa ser utilizado por outros métodos. 
 	 */
 	private TypedQuery<Curso> adicionarFiltro(CursoFilter filtro, CriteriaBuilder criteriaBuilder,
 			CriteriaQuery<Curso> query, Root<Curso> curso, List<Predicate> predicates) {
-		if(filtro.getCpf() != null) {
-			predicates.add(criteriaBuilder.equal(curso.get("cpf"), filtro.getCpf()));
+		if(filtro.getSku() != null) {
+			predicates.add(criteriaBuilder.equal(curso.get("sku"), filtro.getSku()));
 		}
 		
 		/* Verificamos os predicados para adicionarmso a cláusula where.*/
@@ -144,13 +142,13 @@ public class CursosImpl implements CursosQueries {
 		List<Predicate> predicates = new ArrayList<>();
 		
 		/* Aqui fazemos um Join entre a tabela Curso e Usuario através da coluna inseridoPor */
-		@SuppressWarnings("unused")
-		Join<Curso, Usuario> usuario = curso.join("inseridoPor");
+		
+//		Join<Curso, Usuario> usuario = curso.join("inseridoPor");
 		
 		/*Com essa linha, pegamos o usuario que tem ligação com a tabela curso através do campo inseridoPor, 
 		 * do Join acima e, verificamos apenas os cursos que foram inseridos por usuários daquela om.  
 		 */
-		predicates.add(criteriaBuilder.equal(curso.get("inseridoPor"), sistema.getUsuario().getOm().getCodigo()));
+//		predicates.add(criteriaBuilder.equal(curso.get("inseridoPor"), sistema.getUsuario().getOm().getCodigo()));
 		
 		if(!predicates.isEmpty()) {
 			query.where(predicates.stream().toArray(Predicate[]::new));
@@ -186,8 +184,8 @@ public class CursosImpl implements CursosQueries {
 		Root<Curso> curso = query.from(Curso.class);
 		
 		/* Aqui fazemos um Join entre a tabela Curso e Usuario através da coluna inseridoPor*/
-		@SuppressWarnings("unused")
-		Join<Curso, Usuario> usuario = curso.join("inseridoPor");
+		
+//		Join<Curso, Usuario> usuario = curso.join("inseridoPor");
 		
 		/*
 		 * Criamos agora, uma lista dinâmica de predicados.
@@ -197,7 +195,7 @@ public class CursosImpl implements CursosQueries {
 		/*Com essa linha, pegamos o usuario que tem ligação com a tabela curso através do campo inseridoPor, 
 		 * do Join acima e, verificamos apenas os cursos que foram inseridos por usuários daquela om.  
 		 */
-		predicates.add(criteriaBuilder.equal(curso.get("inseridoPor"), sistema.getUsuario().getOm().getCodigo()));
+//		predicates.add(criteriaBuilder.equal(curso.get("inseridoPor"), sistema.getUsuario().getOm().getCodigo()));
 		
 		/*
 		 * Verificamos agora, se o parametro foi preenchido através do CursoFilter ao qual,
@@ -219,12 +217,12 @@ public class CursosImpl implements CursosQueries {
 
 
 	@Override
-	public List<CursoDTO> porCategoria(String categoria) {
+	public List<CursoDTO> porSku(String sku) {
 		String jpql = "select new br.mil.eb.decex.sisaluno.dto.CursoDTO(codigo, categoria, "
 					+ "cfgsCurso, cfgoCurso, matbelCurso, oficiaisCurso, area)"
 					+ "	from Curso where lower(categoriaDescr) like lower(:categoria)";
 		List<CursoDTO> cursosFiltrados = manager.createQuery(jpql, CursoDTO.class)
-					.setParameter("categoria", categoria + "%")
+					.setParameter("categoria", sku + "%")
 					.getResultList();
 		return cursosFiltrados;
 	}		

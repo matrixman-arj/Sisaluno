@@ -15,14 +15,14 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "situacao_no_curso", schema = "comum")
+@Table(name = "situacao_no_curso", schema = "ensino")
 public class SituacaoNoCurso implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@SequenceGenerator(name = "COMUM.SITUACAONOCURSO_CODIGO_GENERATOR",sequenceName = "COMUM.SITUACAONOCURSO_CODIGO_SEQ",allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "COMUM.SITUACAONOCURSO_CODIGO_GENERATOR")
+	@SequenceGenerator(name = "ENSINO.SITUACAONOCURSO_CODIGO_GENERATOR",sequenceName = "ENSINO.SITUACAONOCURSO_CODIGO_SEQ",allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "ENSINO.SITUACAONOCURSO_CODIGO_GENERATOR")
 	private Long codigo;
 	
 	private String nome;

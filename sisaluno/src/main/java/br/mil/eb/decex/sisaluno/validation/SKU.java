@@ -13,11 +13,11 @@ import javax.validation.constraints.Pattern;
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
-@Pattern(regexp = "([a-zA-Z]{2}\\d{4})?")
+@Pattern(regexp = "([a-zA-Z]{3}\\d{2})?")
 public @interface SKU {
 
 	@OverridesAttribute(constraint = Pattern.class, name = "message")
-	String message() default "SKU deve seguir o padrão XX9999";
+	String message() default "Código deve seguir o padrão XXX99";
 	
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

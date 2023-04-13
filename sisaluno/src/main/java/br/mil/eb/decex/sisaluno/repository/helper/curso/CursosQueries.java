@@ -16,7 +16,7 @@ public interface CursosQueries {
 	
 	public Page<Curso> filtrarPelaOmUsuLogado(CursoFilter filtro, Pageable pageable, UsuarioSistema sistema);
 
-	public List<CursoDTO> porCategoria(String categoria);
+	public List<CursoDTO> porSku(String sku);
 		
 	
 	

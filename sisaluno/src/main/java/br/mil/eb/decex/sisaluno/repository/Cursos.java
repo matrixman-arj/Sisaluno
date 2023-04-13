@@ -12,7 +12,7 @@ import br.mil.eb.decex.sisaluno.repository.helper.curso.CursosQueries;
 @Repository
 public interface Cursos extends JpaRepository<Curso, Long>, CursosQueries, JpaSpecificationExecutor<Curso> {
 	
-	public Optional<Curso> findByCategoria(String categoria);	
+	public Optional<Curso> findBySku(String sku);	
 
 //	public List<Curso> findByCpfStartingWithIgnoreCase(String cpf);
 }

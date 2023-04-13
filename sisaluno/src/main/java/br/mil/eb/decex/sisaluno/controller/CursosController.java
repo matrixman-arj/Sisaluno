@@ -25,21 +25,26 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.mil.eb.decex.sisaluno.controller.page.PageWrapper;
 import br.mil.eb.decex.sisaluno.dto.CursoDTO;
-import br.mil.eb.decex.sisaluno.enumerated.ColegioMiltar;
+import br.mil.eb.decex.sisaluno.enumerated.CFGOCurso;
+import br.mil.eb.decex.sisaluno.enumerated.CFGSCurso;
+import br.mil.eb.decex.sisaluno.enumerated.CPORCurso;
+import br.mil.eb.decex.sisaluno.enumerated.Categoria;
 import br.mil.eb.decex.sisaluno.enumerated.Escolaridade;
-import br.mil.eb.decex.sisaluno.enumerated.Etnia;
-import br.mil.eb.decex.sisaluno.enumerated.OrigemAeronautica;
-import br.mil.eb.decex.sisaluno.enumerated.OrigemCivilOuMilitar;
-import br.mil.eb.decex.sisaluno.enumerated.OrigemEscolar;
-import br.mil.eb.decex.sisaluno.enumerated.OrigemExercito;
-import br.mil.eb.decex.sisaluno.enumerated.OrigemMarinha;
-import br.mil.eb.decex.sisaluno.enumerated.Paises;
+import br.mil.eb.decex.sisaluno.enumerated.MatBelCurso;
+import br.mil.eb.decex.sisaluno.enumerated.MedicoCurso;
+import br.mil.eb.decex.sisaluno.enumerated.ODONTOCurso;
+import br.mil.eb.decex.sisaluno.enumerated.OficiaisCurso;
+import br.mil.eb.decex.sisaluno.enumerated.Periodo;
+import br.mil.eb.decex.sisaluno.enumerated.QCOCurso;
 import br.mil.eb.decex.sisaluno.enumerated.Religiao;
-import br.mil.eb.decex.sisaluno.enumerated.RendaFamiliar;
-import br.mil.eb.decex.sisaluno.enumerated.ResideCom;
+import br.mil.eb.decex.sisaluno.enumerated.TAF;
 import br.mil.eb.decex.sisaluno.model.Curso;
+import br.mil.eb.decex.sisaluno.repository.Anos;
 import br.mil.eb.decex.sisaluno.repository.Cursos;
-import br.mil.eb.decex.sisaluno.repository.Estados;
+import br.mil.eb.decex.sisaluno.repository.Npors;
+import br.mil.eb.decex.sisaluno.repository.OMs;
+import br.mil.eb.decex.sisaluno.repository.Situacoes;
+import br.mil.eb.decex.sisaluno.repository.Uetes;
 import br.mil.eb.decex.sisaluno.repository.filter.CursoFilter;
 import br.mil.eb.decex.sisaluno.security.UsuarioSistema;
 import br.mil.eb.decex.sisaluno.service.CadastroCursoService;
@@ -57,27 +62,47 @@ public class CursosController {
 	private Cursos cursos;
 	
 	@Autowired
-	private Estados estados;
+	private OMs oms;
 	
+	@Autowired
+	private Npors npors;
+	
+	@Autowired
+	private Uetes uetes;
+	
+	@Autowired
+	private Situacoes situacoes;
+	
+	@Autowired
+	private Anos anos;
 
 		
 	@RequestMapping("/novo")
 	public ModelAndView novo(Curso curso) {
 		ModelAndView mv = new ModelAndView("curso/CadastroCurso");
-		mv.addObject("naturalidades", estados.findAll());
+		
+		mv.addObject("situacoesNoCurso", situacoes.findAll());
+		
+		mv.addObject("uetes", uetes.findAll());
+		mv.addObject("cporCursos", CPORCurso.values());
+		mv.addObject("nporCursos", CFGSCurso.values());
+		mv.addObject("organizacoesMilitares",oms.findAll());
+		mv.addObject("OficiaisReserva",npors.findAll());
+		mv.addObject("universos", Categoria.values());
+		mv.addObject("matBelcursos", MatBelCurso.values());
+		mv.addObject("oficiaisCursos", OficiaisCurso.values());
+		mv.addObject("cfgsCursos", CFGSCurso.values());
+		mv.addObject("cfgoCursos", CFGOCurso.values());
+		mv.addObject("medicoCursos", MedicoCurso.values());
+		mv.addObject("odontoCursos", ODONTOCurso.values());
+		mv.addObject("qcoCursos", QCOCurso.values());
+		mv.addObject("tafs", TAF.values());
 		mv.addObject("religioes", Religiao.values());
-		mv.addObject("origens", OrigemEscolar.values());
-		mv.addObject("colegiosMilitares", ColegioMiltar.values());
-		mv.addObject("etnias", Etnia.values());
-		mv.addObject("origensCivOuMil", OrigemCivilOuMilitar.values());
-		mv.addObject("origensEB", OrigemExercito.values());
-		mv.addObject("origensMB", OrigemMarinha.values());
-		mv.addObject("origensFAB", OrigemAeronautica.values());
 		mv.addObject("escolaridades", Escolaridade.values());
 		
-		mv.addObject("paisess", Paises.values());
-		mv.addObject("rendas", RendaFamiliar.values());		
-		mv.addObject("resides", ResideCom.values());		
+//		mv.addObject("anos", Ano.values());
+		mv.addObject("anoais", anos.findAll());
+		mv.addObject("periodos", Periodo.values());	
 		return mv;
 	}	
 	
@@ -92,7 +117,7 @@ public class CursosController {
 		try {
 			cadastroCursoService.salvar(curso);
 		}catch(CategoriaCursoJaCadastradoException e) {
-			result.rejectValue("cpf", e.getMessage(), e.getMessage());
+			result.rejectValue("sku", e.getMessage(), e.getMessage());
 			return novo(curso);
 		}
 		
@@ -103,12 +128,12 @@ public class CursosController {
 	@GetMapping
 	public ModelAndView pesquisar(CursoFilter cursoFilter, BindingResult result, @PageableDefault(size = 12) Pageable pageable, HttpServletRequest httpServletRequest, @AuthenticationPrincipal UsuarioSistema sistema ) { 
 		ModelAndView mv = new ModelAndView("curso/PesquisaCursos");
-		
+//		mv.addObject("cursos",cursos.findAll());
 		PageWrapper<Curso> paginaWrapper  = new PageWrapper<>(cursos.filtrar(cursoFilter, pageable), httpServletRequest);		
 		mv.addObject("pagina", paginaWrapper );		
-		
-		PageWrapper<Curso> paginaWrapper2 = new PageWrapper<>(cursos.filtrarPelaOmUsuLogado(cursoFilter, pageable, sistema), httpServletRequest);
-		mv.addObject("paginaOmUsuLogado", paginaWrapper2);
+//		
+//		PageWrapper<Curso> paginaWrapper2 = new PageWrapper<>(cursos.filtrarPelaOmUsuLogado(cursoFilter, pageable, sistema), httpServletRequest);
+//		mv.addObject("paginaOmUsuLogado", paginaWrapper2);
 		
 		return mv;
 	}
@@ -165,7 +190,7 @@ public class CursosController {
 	}
 	
 	@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<CursoDTO> pesquisar(String categoria){
-		return cursos.porCategoria(categoria);
+	public @ResponseBody List<CursoDTO> pesquisar(String sku){
+		return cursos.porSku(sku);
 	}
 }

@@ -1,6 +1,7 @@
 package br.mil.eb.decex.sisaluno.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,16 +19,17 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.util.StringUtils;
 
 import br.mil.eb.decex.sisaluno.enumerated.CFGOCurso;
 import br.mil.eb.decex.sisaluno.enumerated.CFGSCurso;
 import br.mil.eb.decex.sisaluno.enumerated.CPORCurso;
-import br.mil.eb.decex.sisaluno.enumerated.Categoria;
 import br.mil.eb.decex.sisaluno.enumerated.MatBelCurso;
 import br.mil.eb.decex.sisaluno.enumerated.MedicoCurso;
 import br.mil.eb.decex.sisaluno.enumerated.ODONTOCurso;
 import br.mil.eb.decex.sisaluno.enumerated.OficiaisCurso;
 import br.mil.eb.decex.sisaluno.enumerated.QCOCurso;
+import br.mil.eb.decex.sisaluno.enumerated.SituacaoNoCurso;
 import br.mil.eb.decex.sisaluno.validation.SKU;
 
 @Entity
@@ -44,9 +46,9 @@ public class Curso implements Serializable{
 	@NotBlank
 	private String sku;
 	
-	@Enumerated(EnumType.STRING)
+	
     @NotNull(message = "Escolha um universo")
-    private Categoria categoria;
+    private String universo;
 	
 	@Column(name = "universo_descr")
     private String universoDescr;
@@ -104,6 +106,18 @@ public class Curso implements Serializable{
 	
 	@Transient
 	private boolean novaFoto;
+	
+	public String getFotoOuMock() {
+		return !StringUtils.isEmpty(foto) ? foto : "Divisa-mock.png";
+	}
+	
+	public boolean temFoto() {
+		return !StringUtils.isEmpty(this.foto);
+	}
+	
+	@Enumerated(EnumType.STRING)
+    @Column(name = "situacao_no_curso")
+	private SituacaoNoCurso situacaoNoCurso;
     
     @PrePersist
     private void prePersist() {       
@@ -139,6 +153,8 @@ public class Curso implements Serializable{
         if (this.odontoCurso != null) {
             this.setArea(this.odontoCurso.getDescricao());
         }
+        
+        
     }
 
 	public Long getCodigo() {
@@ -147,16 +163,16 @@ public class Curso implements Serializable{
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
+	}	
+
+	public String getUniverso() {
+		return universo;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
+	public void setUniverso(String universo) {
+		this.universo = universo;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-	
 	public CFGSCurso getCfgsCurso() {
 		return cfgsCurso;
 	}
@@ -275,7 +291,55 @@ public class Curso implements Serializable{
 
 	public void setNovaFoto(boolean novaFoto) {
 		this.novaFoto = novaFoto;
+	}	
+
+	public String getSku() {
+		return sku;
+	}
+
+	public void setSku(String sku) {
+		this.sku = sku;
+	}
+
+	public String getUniversoDescr() {
+		return universoDescr;
+	}
+
+	public void setUniversoDescr(String universoDescr) {
+		this.universoDescr = universoDescr;
+	}
+
+	public SituacaoNoCurso getSituacaoNoCurso() {
+		return situacaoNoCurso;
+	}
+
+	public void setSituacaoNoCurso(SituacaoNoCurso situacaoNoCurso) {
+		this.situacaoNoCurso = situacaoNoCurso;
 	}
 	
+	public boolean isNovo() {
+        return this.codigo == null;
+    }
+
+    public boolean isEdicao() {
+        return this.codigo != null;
+    }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(codigo, sku);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Curso other = (Curso) obj;
+		return Objects.equals(codigo, other.codigo) && Objects.equals(sku, other.sku);
+	}	
 	
 }

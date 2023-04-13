@@ -2,14 +2,14 @@ package br.mil.eb.decex.sisaluno.repository.filter;
 
 public class CursoFilter {
 	
-	private String cpf;
+	private String sku;
 
-	public String getCpf() {
-		return cpf;
+	public String getSku() {
+		return sku;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+	public void setSku(String sku) {
+		this.sku = sku;
+	}	
 			
 }

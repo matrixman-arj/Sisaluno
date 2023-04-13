@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.mil.eb.decex.sisaluno.model.Curso;
 import br.mil.eb.decex.sisaluno.repository.Cursos;
-import br.mil.eb.decex.sisaluno.service.exception.CategoriaCursoJaCadastradoException;
 import br.mil.eb.decex.sisaluno.service.exception.ImpossivelExcluirEntidadeException;
+import br.mil.eb.decex.sisaluno.service.exception.SkuCursoJaCadastradoException;
 
 @Service
 public class CadastroCursoService {
@@ -21,9 +21,9 @@ public class CadastroCursoService {
 	
 	@Transactional
 	public void salvar(Curso curso) {
-		Optional<Curso> cursoOptional = cursos.findByCategoria(curso.getCategoria().getDescricao());
-		if (cursoOptional.isPresent() && !cursoOptional.get().equals(curso)) {
-			throw new CategoriaCursoJaCadastradoException("Já existe um curso cadastrado com o cpf informado");
+		Optional<Curso> cursoOptional = cursos.findBySku(curso.getSku());
+		if (cursoOptional.isPresent() && !cursoOptional.get().equals(curso.getSku())) {
+			throw new SkuCursoJaCadastradoException("Já existe um curso cadastrado com o código informado");
 		}	
 		
 		cursos.saveAndFlush(curso);

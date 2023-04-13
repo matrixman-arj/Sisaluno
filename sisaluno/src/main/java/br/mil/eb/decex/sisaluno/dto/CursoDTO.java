@@ -17,7 +17,8 @@ public class CursoDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	
-    private Long codigo;	
+    private Long codigo;
+    private String sku;
     private Categoria categoria;	
     private CFGSCurso cfgsCurso;    
     private CFGOCurso cfgoCurso;    
@@ -26,10 +27,11 @@ public class CursoDTO implements Serializable{
     private String area;
 	
     
-    public CursoDTO(Long codigo, Categoria categoria, CFGSCurso cfgsCurso, CFGOCurso cfgoCurso, MatBelCurso matbelCurso,
+    public CursoDTO(Long codigo, String sku, Categoria categoria, CFGSCurso cfgsCurso, CFGOCurso cfgoCurso, MatBelCurso matbelCurso,
     		OficiaisCurso oficiaisCurso, String area) {
 		
 		this.codigo = codigo;
+		this.sku = sku;
 		this.categoria = categoria;
 		this.cfgsCurso = cfgsCurso;
 		this.cfgoCurso = cfgoCurso;
@@ -86,7 +88,16 @@ public class CursoDTO implements Serializable{
 	}
 	public void setArea(String area) {
 		this.area = area;
-	}   
-   
+	}
+
+
+	public String getSku() {
+		return sku;
+	}
+
+
+	public void setSku(String sku) {
+		this.sku = sku;
+	}	
     
 }

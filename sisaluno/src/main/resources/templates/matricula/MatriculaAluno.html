@@ -33,7 +33,7 @@
 						<div class="decex-box__icon">
 							<i class="fa  fa-university  fa-3x" aria-hidden="true"></i>
 						</div>
-						<div class="decex-box__value">AMAN</div>
+						<div class="decex-box__value">EsA</div>
 						<div class="decex-box__title">Unidade de Ensino</div>
 					</div>
 				</div>
@@ -79,18 +79,24 @@
 					</div>
 				</div>				
 			</div>
-			
+						
 			<div class="row">
 				<div class="form-group  col-sm-12" style="text-align: center;">
-					<label class="control-label" for="Aluno">Dados do aluno</label>
+					<label class="control-label" for="Aluno">Dados do aluno:</label>
 				</div>
 			</div>
 			
 			<div class="row">
-				<div class="form-group  col-sm-6">
+				<div class="form-group  col-sm-12">
 					<label class="control-label" for="cpfAluno">CPF</label>
 					<div class="input-group">
-				      <input id="nomeAluno" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o aluno"/>				      
+				      <input id="cpfAluno" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o aluno">
+				      	<span>
+				      		<label class="control-label" for="cpfAluno">Nome</label>
+				      		<input id="nomeAluno" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o aluno"/>
+				      	</span>
+				      </input>				      
+				      
 				      <input id="codigoAluno" type="hidden"/>
 				      <span class="input-group-btn">
 				        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada"
@@ -99,36 +105,42 @@
 				        </button>
 				      </span>
 				    </div>				    
+				</div>								
+			</div>
+			
+			<div class="row">
+				<div class="form-group  col-sm-12" style="text-align: center;">
+					<label class="control-label" for="Aluno"></label>
 				</div>
-				
-				<div class="form-group  col-sm-6">
-					<label class="control-label" for="nomeAluno">Nome</label>									     
-				    <input id="nomeAluno" type="text" th:text="${aluno}" readonly="readonly" class="form-control"/>			   			    
-				</div>				
+			</div>
+			<div class="row">
+				<div class="form-group  col-sm-12" style="text-align: center;">
+					<label class="control-label" for="Aluno">Notas:</label>
+				</div>
 			</div>
 				
 			<div class="row">
 				<div class="form-group  col-sm-4 sc-required">
-					<label class="control-label" for="tfm">Nota do TFM</label>
+					<label class="control-label" for="tfm">TFM</label>
 					<div class="input-group">
 	      				<div class="input-group-addon">I</div> 
-						<input type="text" maxlength="14" class="form-control  js-decimal" id="tfm"/>
+						<input type="text" maxlength="14" class="form-control  js-nota" id="tfm"/>
 					</div>
 				</div>
 				
 				<div class="form-group  col-sm-4 sc-required">
-					<label class="control-label" for="tfm2">Nota do TFM</label>
+					<label class="control-label" for="tfm2">TFM II</label>
 					<div class="input-group">
 	      				<div class="input-group-addon">II</div> 
-						<input type="text" maxlength="14" class="form-control  js-decimal" id="tfm"/>
+						<input type="text" maxlength="14" class="form-control  js-nota" id="tfm"/>
 					</div>
 				</div>
 				
 				<div class="form-group  col-sm-4 sc-required">
-					<label class="control-label" for="tfm3">Nota do TFM</label>
+					<label class="control-label" for="tfm3">TFM III</label>
 					<div class="input-group">
 	      				<div class="input-group-addon">III</div> 
-						<input type="text" maxlength="14" class="form-control  js-decimal" id="tfm3"/>
+						<input type="text" maxlength="14" class="form-control  js-nota" id="tfm3"/>
 					</div>
 				</div>
 			</div>
@@ -136,26 +148,26 @@
 			<div class="row">
 				
 				<div class="form-group  col-sm-4">
-					<label class="control-label" for="atitudinal">Nota Atitudinal</label>
+					<label class="control-label" for="atitudinal">Atitudinal</label>
 					<div class="input-group">
 	      				<div class="input-group-addon">A</div> 
-						<input type="text" maxlength="14" class="form-control  js-decimal" id="atitudinal"/>
+						<input type="text" maxlength="14" class="form-control  js-nota" id="atitudinal"/>
 					</div>
 				</div>
 			
 				<div class="form-group  col-sm-4">
-					<label class="control-label" for="atitudinalLateral">Nota Atitudinal Lateral</label>
+					<label class="control-label" for="atitudinalLateral">Atitudinal Lateral</label>
 					<div class="input-group">
 	      				<div class="input-group-addon">AL</div> 
-						<input type="text" maxlength="14" class="form-control  js-decimal" id="atitudinalLateral"/>
+						<input type="text" maxlength="14" class="form-control  js-nota" id="atitudinalLateral"/>
 					</div>
 				</div>
 				
 				<div class="form-group  col-sm-4">
-					<label class="control-label" for="atitudinalVertical">Nota Atitudinal Vertical</label>
+					<label class="control-label" for="atitudinalVertical">Atitudinal Vertical</label>
 					<div class="input-group">
 	      				<div class="input-group-addon">AV</div> 
-						<input type="text" maxlength="14" class="form-control  js-decimal" id="atitudinalVertical"/>
+						<input type="text" maxlength="14" class="form-control  js-nota" id="atitudinalVertical"/>
 					</div>
 				</div>
 			</div>
@@ -170,11 +182,11 @@
 			</div>
 			
 			<div class="tab-content">
-				<div class="tab-pane active" id="alunos">
+				<div class="tab-pane active" id="cursos">
 
 					<div class="row">
 						<div class="form-group  col-lg-12">
-							<input type="text" class="form-control js-categoria-curso-input" id="aluno" 
+							<input type="text" class="form-control js-categoria-curso-input" id="curso" 
 								placeholder="Pesquise e adicione o curso pelo nome" autofocus="autofocus" />
 						</div>
 					</div>
@@ -261,6 +273,7 @@
 	<script th:src="@{/javascripts/vendors/handlebars.min.js}"></script>
 	<script th:src="@{/javascripts/aluno.pesquisa-rapida.js}"></script>
 	<script th:src="@{/javascripts/matricula.autocomplete-cursos.js}"></script>
+	<script th:src="@{/layout/javascripts/aluno-mascara-nota.js}"></script>
 	
 	<script>
 	$(function() {
