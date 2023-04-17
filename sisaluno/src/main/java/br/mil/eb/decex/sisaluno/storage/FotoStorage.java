@@ -1,5 +1,7 @@
 package br.mil.eb.decex.sisaluno.storage;
 
+import java.util.UUID;
+
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -9,7 +11,7 @@ public interface FotoStorage {
 
 	public byte[] recuperarFotoTemporaria(String nome);
 
-	public void salvar(String foto);	
+	public void salvar(String string);	
 
 	public byte[] recuperar(String foto);
 	
@@ -17,5 +19,11 @@ public interface FotoStorage {
 
 	public void excluir(String foto);
 
+//	public String getUrl(String foto);
 
+	default String renomearArquivo(String nomeOriginal) {
+		return UUID.randomUUID().toString() + "_" + nomeOriginal;
+	}
+
+		
 }

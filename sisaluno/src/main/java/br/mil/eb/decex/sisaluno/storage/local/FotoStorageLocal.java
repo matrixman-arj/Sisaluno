@@ -10,12 +10,16 @@ import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.mil.eb.decex.sisaluno.storage.FotoStorage;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.name.Rename;
 
+@Profile("local")
+@Component
 public class FotoStorageLocal implements FotoStorage {
 	
 	private static final Logger logger = LoggerFactory.getLogger(FotoStorageLocal.class);
@@ -110,7 +114,7 @@ public class FotoStorageLocal implements FotoStorage {
 		}		
 	}
 	
-	private String renomearArquivo(String nomeOriginal) {
+	public String renomearArquivo(String nomeOriginal) {
 	String novoNome = UUID.randomUUID().toString() + "_" + nomeOriginal;
 	
 	if (logger.isDebugEnabled()) {
