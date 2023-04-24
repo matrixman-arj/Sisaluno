@@ -48,8 +48,8 @@ import br.mil.eb.decex.sisaluno.repository.Uetes;
 import br.mil.eb.decex.sisaluno.repository.filter.CursoFilter;
 import br.mil.eb.decex.sisaluno.security.UsuarioSistema;
 import br.mil.eb.decex.sisaluno.service.CadastroCursoService;
-import br.mil.eb.decex.sisaluno.service.exception.CategoriaCursoJaCadastradoException;
 import br.mil.eb.decex.sisaluno.service.exception.ImpossivelExcluirEntidadeException;
+import br.mil.eb.decex.sisaluno.service.exception.SkuCursoJaCadastradoException;
 
 @Controller
 @RequestMapping("/cursos")
@@ -116,7 +116,7 @@ public class CursosController {
 				
 		try {
 			cadastroCursoService.salvar(curso);
-		}catch(CategoriaCursoJaCadastradoException e) {
+		}catch(SkuCursoJaCadastradoException e) {
 			result.rejectValue("sku", e.getMessage(), e.getMessage());
 			return novo(curso);
 		}

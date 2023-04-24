@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -108,7 +109,7 @@ public class Curso implements Serializable{
 	private boolean novaFoto;
 	
 	public String getFotoOuMock() {
-		return !StringUtils.isEmpty(foto) ? foto : "Divisa-mock.png";
+		return !StringUtils.isEmpty(foto) ? foto : "divisa-mock.png";
 	}
 	
 	public boolean temFoto() {
@@ -117,10 +118,12 @@ public class Curso implements Serializable{
 	
 	@Enumerated(EnumType.STRING)
     @Column(name = "situacao_no_curso")
-	private SituacaoNoCurso situacaoNoCurso;
+	private SituacaoNoCurso situacaoNoCurso;	
     
     @PrePersist
-    private void prePersist() {       
+    private void prePersist() { 
+    	
+    	sku = sku.toUpperCase();
 
         if (this.cfgsCurso != null) {
             this.setArea(this.cfgsCurso.getDescricao());
@@ -156,6 +159,11 @@ public class Curso implements Serializable{
         
         
     }
+    
+    @PreUpdate
+	private void preUpdate() {
+		sku = sku.toUpperCase();
+	}
 
 	public Long getCodigo() {
 		return codigo;

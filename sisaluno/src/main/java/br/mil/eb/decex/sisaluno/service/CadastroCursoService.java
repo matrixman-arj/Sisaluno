@@ -5,11 +5,13 @@ import java.util.Optional;
 import javax.persistence.PersistenceException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.mil.eb.decex.sisaluno.model.Curso;
 import br.mil.eb.decex.sisaluno.repository.Cursos;
+import br.mil.eb.decex.sisaluno.service.event.curso.CursoSalvoEvent;
 import br.mil.eb.decex.sisaluno.service.exception.ImpossivelExcluirEntidadeException;
 import br.mil.eb.decex.sisaluno.service.exception.SkuCursoJaCadastradoException;
 
@@ -19,14 +21,19 @@ public class CadastroCursoService {
 	@Autowired
 	private Cursos cursos;
 	
+	@Autowired
+	private ApplicationEventPublisher publisher;
+	
 	@Transactional
 	public void salvar(Curso curso) {
 		Optional<Curso> cursoOptional = cursos.findBySku(curso.getSku());
-		if (cursoOptional.isPresent() && !cursoOptional.get().equals(curso.getSku())) {
+		if (cursoOptional.isPresent() && !cursoOptional.get().equals(curso)) {
 			throw new SkuCursoJaCadastradoException("Já existe um curso cadastrado com o código informado");
 		}	
 		
 		cursos.saveAndFlush(curso);
+		
+		publisher.publishEvent(new CursoSalvoEvent(curso));
 	}
 	
 	@Transactional

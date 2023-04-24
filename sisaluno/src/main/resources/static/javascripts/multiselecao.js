@@ -1,6 +1,6 @@
-Aluno = Aluno || {};
+Sisaluno = Sisaluno || {};
 
-Aluno.MultiSelecao = (function() {
+Sisaluno.MultiSelecao = (function() {
 	
 	function MultiSelecao() {
 		this.statusBtn = $('.js-status-btn');
@@ -65,6 +65,6 @@ Aluno.MultiSelecao = (function() {
 }());
 
 $(function() {
-	var multiSelecao = new Aluno.MultiSelecao();
+	var multiSelecao = new Sisaluno.MultiSelecao();
 	multiSelecao.iniciar();
 });

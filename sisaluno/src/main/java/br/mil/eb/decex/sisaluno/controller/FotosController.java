@@ -19,9 +19,10 @@ import br.mil.eb.decex.sisaluno.storage.FotoStorageRunnable;
 public class FotosController {
 	
 	
-	@Autowired
+	@Autowired	
 	private FotoStorage fotoStorage;
 	
+		
 	@PostMapping
 	public DeferredResult<FotoDTO> upload(@RequestParam("files[]") MultipartFile[] files) {
 		DeferredResult<FotoDTO> resultado = new DeferredResult<>();

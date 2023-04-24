@@ -1,0 +1,6 @@
+/sisaluno/
+*.java
+sisaluno/src/main/java/br/mil/eb/decex/sisaluno/storage/local/FotoStorageLocal.java
+*.html
+*.html
+*.js

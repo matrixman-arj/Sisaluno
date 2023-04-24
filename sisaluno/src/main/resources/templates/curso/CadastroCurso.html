@@ -24,7 +24,7 @@
 			<div class="row">
 				<div class="col-xs-10">
 					<h1 th:if="${curso.novo}">Cadastrar curso</h1>
-					<h1 th:unless="${curso.novo}">Edição de curso -  [[${curso.nome}]]</h1>
+					<h1 th:unless="${curso.novo}">Edição de curso -  [[${curso.sku}]]</h1>
 				</div>			
 				<div class="col-xs-2">
 					<div class="decex-page-header-controls">
@@ -207,12 +207,15 @@
 					<label class="control-label">Foto</label>
 					
 					<div class="js-container-foto-usuario" th:attr="data-url-fotos=@{/fotos}">
+					
+
 						<div id="upload-drop" class="sc-upload">
 							<i class="glyphicon  glyphicon-cloud-upload"></i>
 							<span>Arraste a foto aqui ou </span>
 							<a class="sc-upload-form-file">selecione <input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
 						</div>
 					</div>
+						
 				</div>
 			</div>						
 			
@@ -231,10 +234,7 @@
 	<!-- E aqui finaliza a configuração do conteúdo do nosso formulário -->
 	
 <th:block layout:fragment="javascript-extra">
-	<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>
-	<script th:src="@{/javascripts/vendors/select2.min.js}"></script>
-	<script th:src="@{/javascripts/cpf.js}"></script>
-	<script th:src="@{/layout/javascripts/curso-mascara-nota.js}"></script>
+	<script th:src="@{/javascripts/vendors/bootstrap-switch.min.js}"></script>	
 	<script th:src="@{/layout/javascripts/pais.js}"></script>
 	<script th:src="@{/layout/javascripts/colegio.js}"></script>
 	<script th:src="@{/layout/javascripts/formacao.js}"></script>
@@ -244,44 +244,12 @@
 	<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
 	<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
 	<script th:src="@{/javascripts/vendors/handlebars.min.js}"></script>	
-	<script th:src="@{/javascripts/usuario.upload-foto.js}"></script>
-	
+	<script th:src="@{/javascripts/curso.upload-foto.js}"></script>
+			
 	<script>
 		$('.js-status').bootstrapSwitch();
 	</script>
-	
-	<script>
-		$(document).ready(function() {
-			$('#oms').select2({
-				placeholder: "Selecione o estabelecimento de ensino",
-				tags: true,
-				tokenSeparators: ['/',',',',',""]
-			});
-		})
-		
-	</script>
-	
-	<script>
-		$(document).ready(function() {
-			$('#anos').select2({
-				placeholder: "Selecione o para o curso",
-				tags: true,
-				tokenSeparators: ['/',',',',',""]
-			});
-		})
-		
-	</script>
-	
-	<script>
-		$(document).ready(function() {
-			$('#situacoes').select2({
-				placeholder: "Selecione o para o curso",
-				tags: true,
-				tokenSeparators: ['/',',',',',""]
-			});
-		})
-		
-	</script>
+
 </th:block>
 	
 </body>

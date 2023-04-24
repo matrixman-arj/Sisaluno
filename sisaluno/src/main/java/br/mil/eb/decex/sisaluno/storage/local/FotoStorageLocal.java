@@ -37,8 +37,7 @@ public class FotoStorageLocal implements FotoStorage {
 		this.local = path;
 		criarPastas();		
 	}
-	
-	
+			
 	@Override
 	public String salvarTemporariamente(MultipartFile[] files) {
 		String novoNome = null;
@@ -46,7 +45,7 @@ public class FotoStorageLocal implements FotoStorage {
 			MultipartFile arquivo = files[0];
 			novoNome = renomearArquivo(arquivo.getOriginalFilename());
 			try {
-				arquivo.transferTo(new File(this.localTemporario.toRealPath().toString() + getDefault().getSeparator() + novoNome));
+				arquivo.transferTo(new File(this.localTemporario.toAbsolutePath().toString() + getDefault().getSeparator() + novoNome));
 			} catch (IOException e) {				
 				throw new RuntimeException("Erro ao tentar salvar na pasta temporária", e);
 			}
@@ -56,14 +55,13 @@ public class FotoStorageLocal implements FotoStorage {
 	}
 	
 	@Override
-	public byte[] recuperarFotoTemporaria(String nome) {		
+	public byte[] recuperarFotoTemporaria(String nome) {
 		try {
 			return Files.readAllBytes(this.localTemporario.resolve(nome));
 		} catch (IOException e) {
-			throw new RuntimeException("Erro lendo a foto temporária", e );			
+			throw new RuntimeException("Erro lendo a foto temporária", e);
 		}
 	}
-	
 	
 	@Override
 	public void salvar(String foto) {
@@ -83,18 +81,13 @@ public class FotoStorageLocal implements FotoStorage {
 		}		
 	}
 	
-	@Override	
-	public byte[] recuperar(String nome) {		
-		try {
-			return Files.readAllBytes(this.local.resolve(nome));			
-		} catch (IOException e) {
-			throw new RuntimeException("Erro lendo a foto", e );
-		}	
-	}
-	
 	@Override
-	public byte[] recuperarThumbnail(String fotoUsuario) {		
-		return recuperar(THUMBNAIL_PREFIX + fotoUsuario);
+	public byte[] recuperar(String nome) {
+		try {
+			return Files.readAllBytes(this.local.resolve(nome));
+		} catch (IOException e) {
+			throw new RuntimeException("Erro lendo a foto", e);
+		}
 	}
 	
 	private void criarPastas() {
@@ -104,24 +97,38 @@ public class FotoStorageLocal implements FotoStorage {
 			Files.createDirectories(this.localTemporario);
 			
 			if (logger.isDebugEnabled()) {
-				logger.debug("Pastas criadas com sucesso!");
-				logger.debug("Pasta defualt: " + this.local.toAbsolutePath());
-				logger.debug("Pasta temporário: " + this.localTemporario.toAbsolutePath());
+				logger.debug("Pastas criadas para salvar fotos.");
+				logger.debug("Pasta default: " + this.local.toAbsolutePath());
+				logger.debug("Pasta temporária: " + this.localTemporario.toAbsolutePath());
 			}
-			
-		} catch (IOException e) {			
-			throw new RuntimeException("Erro ao tentar criar pasta salvar foto", e);
-		}		
+		} catch (IOException e) {
+			throw new RuntimeException("Erro criando pasta para salvar foto", e);
+		}
 	}
 	
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+	private String renomearArquivo(String nomeOriginal) {
+		String novoNome = UUID.randomUUID().toString() + "_" + nomeOriginal;
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug(String.format("Nome original: %s, novo nome: %s", nomeOriginal, novoNome));
+		}
+		
+		return novoNome;
+		
+	}	
+=======
+>>>>>>> Stashed changes
 	public String renomearArquivo(String nomeOriginal) {
 	String novoNome = UUID.randomUUID().toString() + "_" + nomeOriginal;
+>>>>>>> 6952e609fc12e3f21f747a28412a68151954b852
 	
-	if (logger.isDebugEnabled()) {
-		logger.debug(String.format("Nome original: %s, novo nome: %s", nomeOriginal, novoNome));
-	}
-	return novoNome;
-}
+	@Override
+	public byte[] recuperarThumbnail(String fotoUsuario) {		
+		return recuperar(THUMBNAIL_PREFIX + fotoUsuario);
+	}		
 	
 	@Override
 	public void excluir(String foto) {			

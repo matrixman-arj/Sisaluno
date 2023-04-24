@@ -1,6 +1,6 @@
 CREATE TABLE ensino.curso (	
 	codigo serial NOT NULL,
-	SKU character varying(50),
+	sku character varying(50),
 	universo character varying(255),
 	universo_descr character varying(100),
 	cfgs_curso character varying(100),
@@ -25,7 +25,9 @@ CREATE TABLE ensino.curso (
 	tfm2 numeric(10,2),
 	tfm3 numeric(10,2),		
 	situacao_no_curso character varying(100),	
-	situacao_no_curso_descr character varying(100),	
+	situacao_no_curso_descr character varying(100),
+	foto character varying(100),
+	content_type character varying(100),
 			
 	CONSTRAINT curso_pkey PRIMARY KEY (codigo)
 );
