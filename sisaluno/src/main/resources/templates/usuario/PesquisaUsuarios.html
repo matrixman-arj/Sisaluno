@@ -97,7 +97,7 @@
 						<th class="table-usuarios-col-posto">Posto</th>
 						<th class="table-usuarios-col-nomeGuerra">
 <!-- 							<th:block th:replace="fragments/Ordenacao :: order (${pagina}, 'nomeGuerra', 'Nome' )"></th:block> -->
-							<siscomplemento:order page="${pagina}" field="nomeGuerra" text="Nome"/>
+							<sisaluno:order page="${pagina}" field="nomeGuerra" text="Nome"/>
 						</th>
 						<th class="table-usuarios-col-om">Organização Militar</th>
 						<th class="table-usuarios-col-email">E-mail</th>
@@ -141,7 +141,7 @@
 			</table>
 		</div>
 		
-		<siscomplemento:pagination page="${pagina}"/>
+		<sisaluno:pagination page="${pagina}"/>
 		
 	</div>
 	 			

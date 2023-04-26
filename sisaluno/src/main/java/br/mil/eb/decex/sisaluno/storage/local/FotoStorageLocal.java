@@ -106,10 +106,8 @@ public class FotoStorageLocal implements FotoStorage {
 		}
 	}
 	
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-	private String renomearArquivo(String nomeOriginal) {
+
+	public String renomearArquivo(String nomeOriginal) {
 		String novoNome = UUID.randomUUID().toString() + "_" + nomeOriginal;
 		
 		if (logger.isDebugEnabled()) {
@@ -119,11 +117,9 @@ public class FotoStorageLocal implements FotoStorage {
 		return novoNome;
 		
 	}	
-=======
->>>>>>> Stashed changes
-	public String renomearArquivo(String nomeOriginal) {
-	String novoNome = UUID.randomUUID().toString() + "_" + nomeOriginal;
->>>>>>> 6952e609fc12e3f21f747a28412a68151954b852
+
+	
+
 	
 	@Override
 	public byte[] recuperarThumbnail(String fotoUsuario) {		
