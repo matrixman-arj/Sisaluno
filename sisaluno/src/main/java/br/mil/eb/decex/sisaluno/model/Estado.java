@@ -87,7 +87,7 @@ public class Estado implements Serializable{
 		return Objects.equals(codigo, other.codigo);
 	}
 	public static Estado get(Long long1) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }
