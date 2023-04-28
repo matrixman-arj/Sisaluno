@@ -18,9 +18,11 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -158,6 +160,14 @@ public class Aluno implements Serializable{
     private Usuario inseridoPor;
     
     private Boolean ativo;
+    
+    private String foto;
+	
+	@Column(name = "content_type")
+	private String contentType;
+	
+	@Transient
+	private boolean novaFoto;
     
     @PrePersist
     private void prePersist() {
@@ -475,6 +485,45 @@ public class Aluno implements Serializable{
 		this.ativo = ativo;
 	}
 	
+	
+	public String getFoto() {
+		return foto;
+	}
+
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+
+	public String getContentType() {
+		return contentType;
+	}
+
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
+
+	public boolean isNovaFoto() {
+		return novaFoto;
+	}
+
+
+	public void setNovaFoto(boolean novaFoto) {
+		this.novaFoto = novaFoto;
+	}
+	
+	public String getFotoOuMock() {
+		return !StringUtils.isEmpty(foto) ? foto : "usuario-mock.jpg";
+	}
+	
+	public boolean temFoto() {
+		return !StringUtils.isEmpty(this.foto);
+	}
+
+
 	public boolean isNovo() {
         return this.codigo == null;
     }

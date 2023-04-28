@@ -12,10 +12,10 @@ public class CursoListener {
 	@Autowired
 	private FotoStorage fotoStorage;
 	
-	@EventListener(condition = "#evento.temFoto()" )//and #evento.novaFoto")	
+	@EventListener(condition = "#evento.temFoto() and #evento.novaFoto")	
 	public void cursoSalvo(CursoSalvoEvent evento) {		
 		fotoStorage.salvar(evento.getCurso().getFoto());		
-		System.out.println("Tem foto sim! " + evento.getCurso().getFoto());		
+			
 	}
 
 }

@@ -12,14 +12,10 @@ public class UsuarioListener {
 	@Autowired
 	private FotoStorage fotoStorage;
 	
-	@EventListener(condition = "#evento.temFoto()" )//and #evento.novaFoto")
+	@EventListener(condition = "#evento.temFoto() and #evento.novaFoto")
 	
-	public void usuarioSalvo(UsuarioSalvoEvent evento) {
-		
-		
-		fotoStorage.salvar(evento.getUsuario().getFoto());
-		
-		System.out.println("Tem foto sim! " + evento.getUsuario().getFoto());
+	public void usuarioSalvo(UsuarioSalvoEvent evento) {		
+		fotoStorage.salvar(evento.getUsuario().getFoto());		
 		
 	}
 

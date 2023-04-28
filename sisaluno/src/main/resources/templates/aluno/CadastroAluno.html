@@ -255,7 +255,26 @@
 			<!--############################## Final da quarta linha ###################################### -->				
 						
 			
-			<br>													
+			<br>
+			
+			<div class="row">
+				<div class="form-group  col-sm-12">
+					<input type="hidden" th:field="*{foto}">
+					<input type="hidden" th:field="*{contentType}">
+					<input type="hidden" th:field="*{novaFoto}">
+				
+					<label class="control-label">Foto</label>
+					
+					<div class="js-container-foto-aluno" th:attr="data-url-fotos=@{/fotos}">
+						<div id="upload-drop" class="sc-upload">
+							<i class="glyphicon  glyphicon-cloud-upload"></i>
+							<span>Arraste a foto aqui ou </span>
+							<a class="sc-upload-form-file">selecione <input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
+						</div>
+					</div>
+				</div>
+			</div>				
+																
 		<div class="row">	
 						
 			<div class="col-sm-3 form-group">
@@ -265,6 +284,9 @@
 
 		</form>
 	</div>
+	
+	<th:block th:replace="hbs/FotoAluno"></th:block>
+	
 </section>
 	<!-- E aqui finaliza a configuração do conteúdo do nosso formulário -->
 	
@@ -278,6 +300,10 @@
 	<script th:src="@{/layout/javascripts/formacao.js}"></script>
 	<script th:src="@{/layout/javascripts/EspecialidadeSgt.js}"></script>
 	<script th:src="@{/layout/javascripts/EspecialidadeOF.js}"></script>
+	<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
+	<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
+	<script th:src="@{/javascripts/vendors/handlebars.min.js}"></script>	
+	<script th:src="@{/javascripts/aluno.upload-foto.js}"></script>
 	
 	<script>
 		$('.js-status').bootstrapSwitch();

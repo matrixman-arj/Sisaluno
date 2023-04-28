@@ -15,6 +15,7 @@ Sisaluno.UploadFoto = (function() {
 
             this.uploadDrop = $('#upload-drop');
         }
+        
         iniciar() {
             var settings = {
                 type: 'json',
@@ -29,7 +30,7 @@ Sisaluno.UploadFoto = (function() {
             UIkit.uploadDrop(this.uploadDrop, settings);
 
             if (this.inputNomeFoto.val()) {
-                renderizarFoto.call(this, { nome: this.inputNomeFoto.val(), contentType: this.inputContentType.val() });
+                renderizarFoto.call(this, { nome: this.inputNomeFoto.val(), contentType: this.inputContentType.val()});
             }
         }
     }
@@ -49,8 +50,7 @@ Sisaluno.UploadFoto = (function() {
 		var foto = '';
 		if (this.novaFoto.val() == 'true') {
 			foto = 'temp/';
-		}else (this.novaFoto.val() == 'false') 
-			foto = '/';
+		}
 			
 		foto += resposta.nome;
 		
