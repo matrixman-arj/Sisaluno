@@ -31,7 +31,9 @@ CREATE TABLE ensino.aluno (
 	cotista character varying(50),	
 	pai_mae_militar character varying(50),
 	dados_inseridos_por bigint,
-	ativo boolean DEFAULT true NOT NULL,	
+	ativo boolean DEFAULT true NOT NULL,
+	foto character varying(100),
+	content_type character varying(100),
 			
 	CONSTRAINT aluno_pkey PRIMARY KEY (codigo),	
 	UNIQUE (cpf)

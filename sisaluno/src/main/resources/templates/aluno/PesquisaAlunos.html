@@ -46,7 +46,8 @@
 		<div class="table-responsive sc-tabela-simples">
 			<table class="table table-hover">
 				<thead>
-					<tr>					
+					<tr>
+						<th class="table-alunos-col-foto">Foto</th>					
 						<th class="table-alunos-col-idt">CPF</th>
 						<th class="table-alunos-col-nome">							
 							<sisaluno:order page="${pagina}" field="nome" text="Nome"/>
@@ -64,6 +65,9 @@
 				
 				<tbody>
 					<tr th:each="aluno : ${pagina.conteudo}" sec:authorize="hasRole('ROLE_ADMINISTRACAO')">
+						<td class="text-center">
+							<img th:src="@{/fotos/thumbnail.{foto}(foto=${aluno.fotoOuMock})}" class="img-responsive">
+						</td>
 						<td th:text="${aluno.cpf}">CPF</td>
 						<td th:text="${aluno.nome}">Nome</td>
 						<td th:text="${aluno.origemEscolar.descricao}">Origem Escolar</td>
@@ -94,6 +98,9 @@
 					</tr>	
 						
 					<tr th:each="sisaluno : ${paginaOmUsuLogado.conteudo}" sec:authorize="hasRole('ROLE_USUARIO')">	
+						<td class="text-center">
+							<img th:src="@{/fotos/thumbnail.{foto}(foto=${curso.fotoOuMock})}" class="img-responsive">
+						</td>
 						<td th:text="${sisaluno.cpf}">CPF</td>
 						<td th:text="${sisaluno.nome}">Nome</td>
 						<td th:text="${sisaluno.origemEscolar.descricao}">Origem Escolar</td>

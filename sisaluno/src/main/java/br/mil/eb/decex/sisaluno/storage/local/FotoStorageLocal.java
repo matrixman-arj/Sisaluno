@@ -122,8 +122,8 @@ public class FotoStorageLocal implements FotoStorage {
 
 	
 	@Override
-	public byte[] recuperarThumbnail(String fotoUsuario) {		
-		return recuperar(THUMBNAIL_PREFIX + fotoUsuario);
+	public byte[] recuperarThumbnail(String foto) {		
+		return recuperar(THUMBNAIL_PREFIX + foto);
 	}		
 	
 	@Override
