@@ -83,7 +83,7 @@ public class AlunosController {
 	}	
 	
 	@RequestMapping(value = { "/novo", "{\\d+}" }, method = RequestMethod.POST)
-	public ModelAndView cadastrar(@Valid Aluno aluno, BindingResult result, Model model, RedirectAttributes attributes) {
+	public ModelAndView salvar(@Valid Aluno aluno, BindingResult result, Model model, RedirectAttributes attributes) {
 		
 		if(result.hasErrors()) {
 			model.addAttribute(aluno);

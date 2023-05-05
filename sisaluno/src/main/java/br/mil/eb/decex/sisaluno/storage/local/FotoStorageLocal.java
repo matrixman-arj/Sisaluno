@@ -117,14 +117,21 @@ public class FotoStorageLocal implements FotoStorage {
 		return novoNome;
 		
 	}	
-
-	
-
 	
 	@Override
-	public byte[] recuperarThumbnail(String foto) {		
-		return recuperar(THUMBNAIL_PREFIX + foto);
-	}		
+	public byte[] recuperarThumbnail(String fotoUsuario) {		
+		return recuperar(THUMBNAIL_PREFIX + fotoUsuario);
+	}
+	
+//	@Override
+//	public byte[] recuperarThumbnailAluno(String fotoAluno) {		
+//		return recuperar(THUMBNAIL_PREFIX + fotoAluno);
+//	}
+//	
+//	@Override
+//	public byte[] recuperarThumbnailCurso(String fotoCurso) {		
+//		return recuperar(THUMBNAIL_PREFIX + fotoCurso);
+//	}	
 	
 	@Override
 	public void excluir(String foto) {			

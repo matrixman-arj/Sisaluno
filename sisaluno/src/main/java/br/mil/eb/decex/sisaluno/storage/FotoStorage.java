@@ -11,11 +11,15 @@ public interface FotoStorage {
 
 	public byte[] recuperarFotoTemporaria(String nome);
 
-	public void salvar(String string);	
+	public void salvar(String foto);	
 
 	public byte[] recuperar(String foto);
 	
-	public byte[] recuperarThumbnail(String foto);	
+	public byte[] recuperarThumbnail(String fotoUsuario);	
+		
+//	public byte[] recuperarThumbnailAluno(String fotoAluno);
+//	
+//	public byte[] recuperarThumbnailCurso(String fotoCurso);	
 
 	public void excluir(String foto);
 
