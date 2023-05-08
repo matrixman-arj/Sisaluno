@@ -5,13 +5,16 @@ import java.util.Optional;
 import javax.persistence.PersistenceException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.mil.eb.decex.sisaluno.model.Aluno;
 import br.mil.eb.decex.sisaluno.repository.Alunos;
+import br.mil.eb.decex.sisaluno.service.event.aluno.AlunoSalvoEvent;
 import br.mil.eb.decex.sisaluno.service.exception.CpfAlunoJaCadastradoException;
 import br.mil.eb.decex.sisaluno.service.exception.ImpossivelExcluirEntidadeException;
+import br.mil.eb.decex.sisaluno.storage.FotoStorage;
 
 @Service
 public class CadastroAlunoService {
@@ -19,6 +22,12 @@ public class CadastroAlunoService {
 	@Autowired
 	private Alunos alunos;
 	
+	@Autowired
+	private ApplicationEventPublisher publisher;
+	
+//	@Autowired
+//	private FotoStorage fotoStorage;
+//	
 	@Transactional
 	public void salvar(Aluno aluno) {
 		Optional<Aluno> alunoOptional = alunos.findByCpf(aluno.getCpf().replaceAll("\\.|-", ""));
@@ -30,6 +39,8 @@ public class CadastroAlunoService {
 			aluno.setAtivo(true);
 		}		
 		alunos.saveAndFlush(aluno);
+		
+		publisher.publishEvent(new AlunoSalvoEvent(aluno));
 	}
 	
 	@Transactional

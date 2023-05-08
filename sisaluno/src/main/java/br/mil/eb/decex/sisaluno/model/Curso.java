@@ -25,6 +25,7 @@ import org.springframework.util.StringUtils;
 import br.mil.eb.decex.sisaluno.enumerated.CFGOCurso;
 import br.mil.eb.decex.sisaluno.enumerated.CFGSCurso;
 import br.mil.eb.decex.sisaluno.enumerated.CPORCurso;
+import br.mil.eb.decex.sisaluno.enumerated.Categoria;
 import br.mil.eb.decex.sisaluno.enumerated.MatBelCurso;
 import br.mil.eb.decex.sisaluno.enumerated.MedicoCurso;
 import br.mil.eb.decex.sisaluno.enumerated.ODONTOCurso;
@@ -110,6 +111,18 @@ public class Curso implements Serializable{
 	
 	public String getFotoOuMock() {
 		return !StringUtils.isEmpty(foto) ? foto : "divisa-mock.png";
+	}
+	
+//	public String getOfOuSgt() {
+//		return StringUtils.pathEquals("FORM_OF", getUniverso()) ? "patente-oficial.jpeg " : "divisa.png";
+//	}
+	
+	public String getOfOuSgt() {
+		if (getUniverso() == "FORM_OF") {
+		 foto = "patente-oficial.jpeg";
+		}if (getUniverso() == "FORM_GRAD_PCA")
+		foto = "divisa.png";
+		return foto;
 	}
 	
 	public boolean temFoto() {

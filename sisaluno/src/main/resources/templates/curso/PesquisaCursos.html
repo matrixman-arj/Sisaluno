@@ -61,7 +61,10 @@
 						<tr th:each="curso : ${pagina.conteudo}">
 						
 							<td class="text-center">
-								<img th:src="@{/fotos/thumbnail.{foto}(foto=${curso.fotoOuMock})}" class="img-responsive">
+								
+								<img th:if="${curso.universo == 'FORM_OF'}" th:src="@{/fotos/thumbnail.patente-oficial.jpeg}" class="img-responsive">
+								<img th:if="${curso.universo == 'FORM_GRAD_PCA'}" th:src="@{/fotos/thumbnail.divisa.png}" class="img-responsive">
+<!-- 								<img th:src="@{/fotos/thumbnail.{foto}(foto=${curso.fotoOuMock})}" class="img-responsive"> -->
 							</td>
 							<td th:text="${curso.sku}">Codigo do curso</td>
 							<td th:text="${curso.universo}">Nome</td>
