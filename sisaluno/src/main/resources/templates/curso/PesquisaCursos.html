@@ -62,8 +62,9 @@
 						
 							<td class="text-center">
 								
-								<img th:if="${curso.universo == 'FORM_OF'}" th:src="@{/fotos/thumbnail.patente-oficial.jpeg}" class="img-responsive">
+								<img th:if="${curso.universo == 'FORM_OF'}" th:src="@{/fotos/thumbnail.patente-oficial.png}" class="img-responsive">
 								<img th:if="${curso.universo == 'FORM_GRAD_PCA'}" th:src="@{/fotos/thumbnail.divisa.png}" class="img-responsive">
+								<img th:if="${curso.universo == 'OF_PRACA'}" th:src="@{/fotos/thumbnail.Posto-oficial-praça.png}" class="img-responsive">
 <!-- 								<img th:src="@{/fotos/thumbnail.{foto}(foto=${curso.fotoOuMock})}" class="img-responsive"> -->
 							</td>
 							<td th:text="${curso.sku}">Codigo do curso</td>

@@ -4,7 +4,7 @@ public enum Categoria {
 	// Tipo de formação que o aluno está realizando.
 	
 	FORM_OF("Formação de Oficiais"),
-//	FORM_GRAD_OF("Formação e graduação de Oficiais"),
+	OF_PRACA("Oficiais e Praças"),
 	FORM_GRAD_PCA("Formação e graduação de Praças");
 	
 	

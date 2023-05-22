@@ -14,7 +14,6 @@ import br.mil.eb.decex.sisaluno.repository.Alunos;
 import br.mil.eb.decex.sisaluno.service.event.aluno.AlunoSalvoEvent;
 import br.mil.eb.decex.sisaluno.service.exception.CpfAlunoJaCadastradoException;
 import br.mil.eb.decex.sisaluno.service.exception.ImpossivelExcluirEntidadeException;
-import br.mil.eb.decex.sisaluno.storage.FotoStorage;
 
 @Service
 public class CadastroAlunoService {

@@ -25,7 +25,6 @@ import org.springframework.util.StringUtils;
 import br.mil.eb.decex.sisaluno.enumerated.CFGOCurso;
 import br.mil.eb.decex.sisaluno.enumerated.CFGSCurso;
 import br.mil.eb.decex.sisaluno.enumerated.CPORCurso;
-import br.mil.eb.decex.sisaluno.enumerated.Categoria;
 import br.mil.eb.decex.sisaluno.enumerated.MatBelCurso;
 import br.mil.eb.decex.sisaluno.enumerated.MedicoCurso;
 import br.mil.eb.decex.sisaluno.enumerated.ODONTOCurso;
@@ -46,14 +45,20 @@ public class Curso implements Serializable{
 	
 	@SKU
 	@NotBlank
-	private String sku;
+	private String sku;/*MDEE*/
 	
+	private String modalidade;
+	
+	@Column(name = "modalidade_descr")
+	private String modalidadeDscri;
 	
     @NotNull(message = "Escolha um universo")
     private String universo;
 	
 	@Column(name = "universo_descr")
     private String universoDescr;
+	
+	private String ingresso;
 	
 	@Enumerated(EnumType.STRING)
     @Column(name = "cfgs_curso")
@@ -192,6 +197,29 @@ public class Curso implements Serializable{
 
 	public void setUniverso(String universo) {
 		this.universo = universo;
+	}
+
+	public String getModalidade() {
+		return modalidade;
+	}
+	public void setModalidade(String modalidade) {
+		this.modalidade = modalidade;
+	}
+
+	public String getModalidadeDscri() {
+		return modalidadeDscri;
+	}
+
+	public void setModalidadeDscri(String modalidadeDscri) {
+		this.modalidadeDscri = modalidadeDscri;
+	}	
+
+	public String getIngresso() {
+		return ingresso;
+	}
+
+	public void setIngresso(String ingresso) {
+		this.ingresso = ingresso;
 	}
 
 	public CFGSCurso getCfgsCurso() {
