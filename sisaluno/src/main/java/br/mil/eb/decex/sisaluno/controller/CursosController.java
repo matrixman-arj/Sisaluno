@@ -30,14 +30,17 @@ import br.mil.eb.decex.sisaluno.enumerated.CFGSCurso;
 import br.mil.eb.decex.sisaluno.enumerated.CPORCurso;
 import br.mil.eb.decex.sisaluno.enumerated.Categoria;
 import br.mil.eb.decex.sisaluno.enumerated.Escolaridade;
+import br.mil.eb.decex.sisaluno.enumerated.Linha;
 import br.mil.eb.decex.sisaluno.enumerated.MatBelCurso;
 import br.mil.eb.decex.sisaluno.enumerated.MedicoCurso;
+import br.mil.eb.decex.sisaluno.enumerated.Modalidade;
 import br.mil.eb.decex.sisaluno.enumerated.ODONTOCurso;
 import br.mil.eb.decex.sisaluno.enumerated.OficiaisCurso;
 import br.mil.eb.decex.sisaluno.enumerated.Periodo;
 import br.mil.eb.decex.sisaluno.enumerated.QCOCurso;
 import br.mil.eb.decex.sisaluno.enumerated.Religiao;
 import br.mil.eb.decex.sisaluno.enumerated.TAF;
+import br.mil.eb.decex.sisaluno.enumerated.Universo;
 import br.mil.eb.decex.sisaluno.model.Curso;
 import br.mil.eb.decex.sisaluno.repository.Anos;
 import br.mil.eb.decex.sisaluno.repository.Cursos;
@@ -61,48 +64,16 @@ public class CursosController {
 	@Autowired
 	private Cursos cursos;
 	
-	@Autowired
-	private OMs oms;
 	
-	@Autowired
-	private Npors npors;
-	
-	@Autowired
-	private Uetes uetes;
-	
-	@Autowired
-	private Situacoes situacoes;
-	
-	@Autowired
-	private Anos anos;
 
 		
 	@RequestMapping("/novo")
 	public ModelAndView novo(Curso curso) {
-		ModelAndView mv = new ModelAndView("curso/CadastroCurso");
+		ModelAndView mv = new ModelAndView("curso/CadastroCurso");				
+		mv.addObject("modalidades", Modalidade.values());
+		mv.addObject("universos", Universo.values());
+		mv.addObject("linhas",Linha.values());
 		
-		mv.addObject("situacoesNoCurso", situacoes.findAll());
-		
-		mv.addObject("uetes", uetes.findAll());
-		mv.addObject("cporCursos", CPORCurso.values());
-		mv.addObject("nporCursos", CFGSCurso.values());
-		mv.addObject("organizacoesMilitares",oms.findAll());
-		mv.addObject("OficiaisReserva",npors.findAll());
-		mv.addObject("universos", Categoria.values());
-		mv.addObject("matBelcursos", MatBelCurso.values());
-		mv.addObject("oficiaisCursos", OficiaisCurso.values());
-		mv.addObject("cfgsCursos", CFGSCurso.values());
-		mv.addObject("cfgoCursos", CFGOCurso.values());
-		mv.addObject("medicoCursos", MedicoCurso.values());
-		mv.addObject("odontoCursos", ODONTOCurso.values());
-		mv.addObject("qcoCursos", QCOCurso.values());
-		mv.addObject("tafs", TAF.values());
-		mv.addObject("religioes", Religiao.values());
-		mv.addObject("escolaridades", Escolaridade.values());
-		
-//		mv.addObject("anos", Ano.values());
-		mv.addObject("anoais", anos.findAll());
-		mv.addObject("periodos", Periodo.values());	
 		return mv;
 	}	
 	

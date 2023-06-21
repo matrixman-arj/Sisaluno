@@ -49,10 +49,10 @@
 					<thead>
 						<tr>
 							<th class="table-alunos-col-foto">Foto</th>					
-							<th class="table-alunos-col-idt">Código</th>
+							<th class="table-alunos-col-idt">SKU</th>
 							<th class="table-alunos-col-nome">Universo</th>					
-							<th class="table-alunos-col-origemEscolar">Epecialidade</th>
-							<th class="table-alunos-col-colegioMiltar">Área</th>						
+							<th class="table-alunos-col-origemEscolar">Linha</th>
+							<th class="table-alunos-col-colegioMiltar">Modalidade</th>						
 							<th class="table-alunos-col-acoes">Ações</th>
 						</tr>
 					</thead>
@@ -69,8 +69,8 @@
 							</td>
 							<td th:text="${curso.sku}">Codigo do curso</td>
 							<td th:text="${curso.universo}">Nome</td>
-							<td th:text="${curso.oficiaisCurso}">Especialidade</td>
-							<td th:text="${curso.area}">Área</td>
+							<td th:text="${curso.linha}">Linha</td>
+							<td th:text="${curso.modalidade}">Modalidade</td>
 													
 							<td class="text-left">
 								<a class="btn btn-link btn-xs js-tooltip" title="Editar" th:href="@{/cursos/{codigo}(codigo=${curso.codigo})}"  >

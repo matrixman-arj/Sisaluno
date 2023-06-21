@@ -55,147 +55,38 @@
 					<input id="sku" type="text" class="form-control js-sku" th:field="*{sku}"/>					
 				</div>
 				
-				<!--Select para alunos a oficiais informarem se seu curso é apenas formação ou também graduação -->
-				<div class="col-sm-3 form-group sc-required" sisaluno:classforerror="universo">
-					<label for="universo" class="control-label">Categoria</label>
-					<select id="universo" class="form-control" th:field="*{universo}" onchange="verificaFormac(this.value)">
-	                    <option value="">Selecione a categoria</option>
-	                    <option th:each="universo : ${universos}" th:value="${universo}" th:text="${universo.descricao}">FORM_GRAD_OF</option>
+				<!-- #OCULTA# -->
+				<!--Select para alunos a sargentos informarem a área do seu cursos -->
+				<div class="col-sm-3 form-group">
+					<label for="modalidade" class="control-label">Modalidade</label>
+					<select id="cfgsCurso" class="form-control" th:field="*{modalidade}" onchange="verificaEspSgt(this.value)">
+	                    <option value="">Selecione a arma</option>
+	                    <option th:each="modalidade : ${modalidades}" th:value="${modalidade.descricao}" th:text="${modalidade.descricao}">FORMACAO</option>
 	                </select>
 				</div>
 				
-				<!-- #OCULTA# -->
-				<!--Select para alunos a sargentos informarem a área do seu cursos -->
-				<div class="col-sm-3 form-group" hidden="true" id="divAREASGT" >
-					<label for="cfgsCurso" class="control-label">Arma</label>
-					<select id="cfgsCurso" class="form-control" th:field="*{cfgsCurso}" onchange="verificaEspSgt(this.value)">
-	                    <option value="">Selecione a arma</option>
-	                    <option th:each="cfgsCurso : ${cfgsCursos}" th:value="${cfgsCurso}" th:text="${cfgsCurso.descricao}">ARTILHARIA</option>
+				<!--Select para alunos a oficiais informarem se seu curso é apenas formação ou também graduação -->
+				<div class="col-sm-3 form-group sc-required" sisaluno:classforerror="universo">
+					<label for="universo" class="control-label">Universo</label>
+					<select id="universo" class="form-control" th:field="*{universo}" onchange="verificaFormac(this.value)">
+	                    <option value="">Selecione o universo</option>
+	                    <option th:each="universo : ${universos}" th:value="${universo.descricao}" th:text="${universo.descricao}">FORM_GRAD_OF</option>
 	                </select>
 				</div>
+				
+				
 				
 				<!-- #OCULTA# -->
 				<!--Select para áreas no cursos de Material Bélico -->				
-				<div class="col-sm-3 form-group sc-required" hidden="true" id="divMATBEL">
-					<label for="matBelcurso" class="control-label">MatBel de</label>
-					<select id="matBelcurso" class="form-control" th:field="*{matbelCurso}">
-	                    <option value="">Selecione o curso MatBel matriculado</option>
-	                    <option th:each="matBelcurso : ${matBelcursos}" th:value="${matBelcurso}" th:text="${matBelcurso.descricao}">FORM_GRAD_PRACA</option>
-	                </select>
-				</div>
-				
-				<!-- #OCULTA# -->
-				<!--Select para alunos a sargentos informarem a Unidade Escolar Tecnológica do Exército -->											
-				<div class="col-sm-3 form-group sc-required" hidden="true" id="divUETE">
-					<label for="uete" class="control-label">UETE</label>
-					<select id="uete" class="form-control" th:field="*{uete}">
-	                    <option value="">Selecione a Unidade Escolar Tecnológica do Exército</option>
-	                    <option th:each="uete : ${uetes}" th:value="${uete.codigo}" th:text="${uete.sigla}">20º RCB</option>
-	                </select>
-				</div>
-				
-				<!-- #OCULTA# -->											
-				<!--Select para alunos a oficiais informarem a área do seu cursos -->
-				<div class="col-sm-3 form-group sc-required" hidden="true" id="divAREAOF">
-					<label for="oficiaisCurso" class="control-label">Área</label>
-					<select id="oficiaisCurso" class="form-control" th:field="*{oficiaisCurso}" onchange="verificaEspOF(this.value)">
-	                    <option value="">Selecione a área</option>
-	                    <option th:each="oficiaisCurso : ${oficiaisCursos}" th:value="${oficiaisCurso}" th:text="${oficiaisCurso.descricao}">FORM_GRAD_PRACA</option>
+				<div class="col-sm-3 form-group sc-required">
+					<label for="linha" class="control-label">Linha</label>
+					<select id="linha" class="form-control" th:field="*{linha}">
+	                    <option value="">Selecione a linha</option>
+	                    <option th:each="linha : ${linhas}" th:value="${linha.descricao}" th:text="${linha.descricao}">BELICA</option>
 	                </select>
 				</div>
 				
 				
-				<!-- #OCULTA# -->
-				<!--Select para os cursos de Formação e Graduação de Oficiais -->
-				<div class="col-sm-3 form-group sc-required" hidden="true" id="divCFGO">
-					<label for="cfgoCurso" class="control-label">Arma</label>
-					<select id="cfgoCurso" class="form-control" th:field="*{cfgoCurso}">
-	                    <option value="">Selecione a arma</option>
-	                    <option th:each="cfgoCurso : ${cfgoCursos}" th:value="${cfgoCurso}" th:text="${cfgoCurso.descricao}">ARTILHARIA</option>
-	                </select>
-				</div>
-			
-				
-				<!-- #OCULTA# -->
-				<!--Select para informar o NPOR aonde o aluno está cursando-->
-				<div class="col-sm-3 form-group" hidden="true" id="divNPOR" siscomplemento:classforerror="npor">
-					<label for="npor" class="control-label">NPOR</label>					
-					<select id="npor" class="form-control" th:field="*{npor}">
-	                    <option value="">Selecione o NPOR</option>
-	                    <option th:each="npor : ${OficiaisReserva}" th:value="${npor.codigo}" th:text="${npor.sigla}">28º BI</option>
-	                </select>	                
-				</div>		
-				
-				<!-- #OCULTA# -->
-				<!--Select para especialidades nos cursos do CPOR -->
-				<div class="col-sm-3 form-group" hidden="true" id="divCPOR">
-					<label for="cporCurso" class="control-label">Área do curso de graduação</label>
-					<select id="cporCurso" class="form-control" th:field="*{cporCurso}">
-	                    <option value="">Selecione a área do curso que está realizando</option>
-	                    <option th:each="cporCurso : ${cporCursos}" th:value="${cporCurso}" th:text="${cporCurso.descricao}">C_EXAT_TERRA</option>
-	                </select>
-				</div>
-								
-				<!-- #OCULTA# -->				
-				<!--Select para especialidades nos cursos de Médico -->
-				<div class="col-sm-3 form-group sc-required" hidden="true" id="divMEDICO">
-					<label for="medicoCurso" class="control-label">Especialidade</label>
-					<select id="medicoCurso" class="form-control" th:field="*{medicoCurso}">
-	                    <option value="">Selecione a especialidade</option>
-	                    <option th:each="medicoCurso : ${medicoCursos}" th:value="${medicoCurso}" th:text="${medicoCurso.descricao}">CARDIOLOGIA</option>
-	                </select>
-				</div>
-								
-				<!-- #OCULTA# -->
-				<!--Select para especialidades nos cursos de QCO -->
-				<div class="col-sm-3 form-group sc-required" hidden="true" id="divQCO">
-					<label for="qcoCurso" class="control-label">Especialidade</label>
-					<select id="qcoCurso" class="form-control" th:field="*{qcoCurso}">
-	                    <option value="">Selecione a especialidade</option>
-	                    <option th:each="qcoCurso : ${qcoCursos}" th:value="${qcoCurso}" th:text="${qcoCurso.descricao}">ADMINISTRAÇÃO</option>
-	                </select>
-				</div>
-				
-				<!-- #OCULTA# -->
-				<!--Select para especialidades nos cursos de ODONTOLOGIA -->
-				<div class="col-sm-3 form-group sc-required" hidden="true" id="divODONTO">
-					<label for="odontoCurso" class="control-label">Especialidade</label>
-					<select id="odontoCurso" class="form-control" th:field="*{odontoCurso}">
-	                    <option value="">Selecione a especialidade</option>
-	                    <option th:each="odontoCurso : ${odontoCursos}" th:value="${odontoCurso}" th:text="${odontoCurso.descricao}">ENDO</option>
-	                </select>
-				</div>
-											
-			</div>
-			<!--############################## Fim da primeira linha  maxlength="11" ###################################### -->
-			
-			<!--############################## Inicio da segunda linha  maxlength="11" ###################################### -->
-			<div class="row">				
-				
-						
-																
-			</div>
-			<!--############################## Final da segunda linha ###################################### -->
-			
-			
-			<!--############################## Inicio da tereceira linha ###################################### -->	
-			<div class="row">								
-				
-							
-			</div>
-			<!--############################## Final da terceira linha ###################################### -->
-			
-			<!--############################## Inicio da quarta linha ###################################### -->
-			<div class="row">			
-								
-				
-					
-<!-- 					<div hidden="true"> -->
-<!-- 						<select id="inseridoPor" class="form-control" th:field="*{inseridoPor}">											 -->
-<!-- 							<option th:value="${#authentication.principal.usuario.om.codigo}">2º Sgt - Vanilton</option> -->
-<!-- 						</select> -->
-<!-- 					</div> -->
-										
 			</div>		
 			<!--############################## Final da quarta linha ###################################### -->				
 			<div class="row">
