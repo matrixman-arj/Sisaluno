@@ -25,29 +25,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.mil.eb.decex.sisaluno.controller.page.PageWrapper;
 import br.mil.eb.decex.sisaluno.dto.CursoDTO;
-import br.mil.eb.decex.sisaluno.enumerated.CFGOCurso;
-import br.mil.eb.decex.sisaluno.enumerated.CFGSCurso;
-import br.mil.eb.decex.sisaluno.enumerated.CPORCurso;
-import br.mil.eb.decex.sisaluno.enumerated.Categoria;
-import br.mil.eb.decex.sisaluno.enumerated.Escolaridade;
+import br.mil.eb.decex.sisaluno.enumerated.EspecialidadeArma;
 import br.mil.eb.decex.sisaluno.enumerated.Linha;
-import br.mil.eb.decex.sisaluno.enumerated.MatBelCurso;
-import br.mil.eb.decex.sisaluno.enumerated.MedicoCurso;
 import br.mil.eb.decex.sisaluno.enumerated.Modalidade;
-import br.mil.eb.decex.sisaluno.enumerated.ODONTOCurso;
-import br.mil.eb.decex.sisaluno.enumerated.OficiaisCurso;
-import br.mil.eb.decex.sisaluno.enumerated.Periodo;
-import br.mil.eb.decex.sisaluno.enumerated.QCOCurso;
-import br.mil.eb.decex.sisaluno.enumerated.Religiao;
-import br.mil.eb.decex.sisaluno.enumerated.TAF;
+import br.mil.eb.decex.sisaluno.enumerated.TipoVinculo;
 import br.mil.eb.decex.sisaluno.enumerated.Universo;
+import br.mil.eb.decex.sisaluno.enumerated.Vinculo;
 import br.mil.eb.decex.sisaluno.model.Curso;
-import br.mil.eb.decex.sisaluno.repository.Anos;
 import br.mil.eb.decex.sisaluno.repository.Cursos;
-import br.mil.eb.decex.sisaluno.repository.Npors;
-import br.mil.eb.decex.sisaluno.repository.OMs;
-import br.mil.eb.decex.sisaluno.repository.Situacoes;
-import br.mil.eb.decex.sisaluno.repository.Uetes;
 import br.mil.eb.decex.sisaluno.repository.filter.CursoFilter;
 import br.mil.eb.decex.sisaluno.security.UsuarioSistema;
 import br.mil.eb.decex.sisaluno.service.CadastroCursoService;
@@ -73,6 +58,9 @@ public class CursosController {
 		mv.addObject("modalidades", Modalidade.values());
 		mv.addObject("universos", Universo.values());
 		mv.addObject("linhas",Linha.values());
+		mv.addObject("armas",EspecialidadeArma.values());
+		mv.addObject("vinculos",Vinculo.values());
+		mv.addObject("tiposVinculo",TipoVinculo.values());
 		
 		return mv;
 	}	

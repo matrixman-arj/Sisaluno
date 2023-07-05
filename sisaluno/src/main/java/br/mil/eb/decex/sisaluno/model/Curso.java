@@ -5,8 +5,6 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +18,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.util.StringUtils;
 
-import br.mil.eb.decex.sisaluno.enumerated.SituacaoNoCurso;
 import br.mil.eb.decex.sisaluno.validation.SKU;
 
 @Entity
@@ -40,9 +37,22 @@ public class Curso implements Serializable{
 	private String modalidade;
 		
     @NotNull(message = "Escolha um universo")
-    private String universo;	
+    private String universo;
+    
+    private String descricao;
 	
-	private String linha;	  
+	private String linha;
+	
+	private String vinculo;
+	
+	@Column(name = "vinculo_descr")
+	private String vinculoDescr;
+	
+	@Column(name = "tipo_vinculo")
+	private String tipoVinculo;
+	
+	@Column(name = "tipo_vinculo_descr")
+	private String tipoVinculoDescr;
     
     private String foto;
 	
@@ -97,6 +107,14 @@ public class Curso implements Serializable{
 
 	public void setUniverso(String universo) {
 		this.universo = universo;
+	}	
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getModalidade() {
@@ -111,6 +129,40 @@ public class Curso implements Serializable{
 	}
 	public void setLinha(String linha) {
 		this.linha = linha;
+	}
+	
+	
+
+	public String getVinculo() {
+		return vinculo;
+	}
+
+	public void setVinculo(String vinculo) {
+		this.vinculo = vinculo;
+	}
+
+	public String getVinculoDescr() {
+		return vinculoDescr;
+	}
+
+	public void setVinculoDescr(String vinculoDescr) {
+		this.vinculoDescr = vinculoDescr;
+	}
+
+	public String getTipoVinculo() {
+		return tipoVinculo;
+	}
+
+	public void setTipoVinculo(String tipoVinculo) {
+		this.tipoVinculo = tipoVinculo;
+	}
+
+	public String getTipoVinculoDescr() {
+		return tipoVinculoDescr;
+	}
+
+	public void setTipoVinculoDescr(String tipoVinculoDescr) {
+		this.tipoVinculoDescr = tipoVinculoDescr;
 	}
 
 	public String getFoto() {
