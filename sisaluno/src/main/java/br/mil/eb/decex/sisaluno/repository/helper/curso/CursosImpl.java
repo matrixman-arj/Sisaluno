@@ -218,11 +218,11 @@ public class CursosImpl implements CursosQueries {
 
 	@Override
 	public List<CursoDTO> porSku(String sku) {
-		String jpql = "select new br.mil.eb.decex.sisaluno.dto.CursoDTO(codigo, categoria, "
-					+ "cfgsCurso, cfgoCurso, matbelCurso, oficiaisCurso, area)"
-					+ "	from Curso where lower(categoriaDescr) like lower(:categoria)";
+		String jpql = "select new br.mil.eb.decex.sisaluno.dto.CursoDTO(codigo, sku, "
+					+ "modalidade, universo, descricao, linha, vinculo, foto)"
+					+ "	from Curso where lower(sku) like lower(:sku)";
 		List<CursoDTO> cursosFiltrados = manager.createQuery(jpql, CursoDTO.class)
-					.setParameter("categoria", sku + "%")
+					.setParameter("sku", sku + "%")
 					.getResultList();
 		return cursosFiltrados;
 	}		

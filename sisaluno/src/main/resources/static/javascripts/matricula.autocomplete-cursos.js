@@ -3,32 +3,32 @@ Sisaluno = Sisaluno || {};
 Sisaluno.Autocomplete = (function() {
 	
 	function Autocomplete() {
-		this.categoriaInput = $('.js-categoria-curso-input');
+		this.skuInput = $('.js-sku-curso-input');
 		var htmlTemplateAutocomplete = $('#template-autocomplete-curso').html();
 		this.template = Handlebars.compile(htmlTemplateAutocomplete);
 	}
 	
 	Autocomplete.prototype.iniciar = function() {
 		var options = {
-			url: function(categoria) {
-				return '/sisaluno/cursos?categoria=' + categoria;
+			url: function(sku) {
+				return '/sisaluno/cursos?sku=' + sku;
 			},
-			getValue: 'categoria',
+			getValue: 'sku',
 			minCharNumber: 3,
 			requestDelay: 300,
 			ajaxSettings: {
 				contentType: 'application/json'
-			},
-			template: {
+			}
+			/*template: {
 				type: 'custom',
-				method: function(categoria, curso) {
+				method: function(sku, curso) {
 //					curso.valorFormatado = Sisaluno.formatarMoeda(curso.tfm);
 					return this.template(curso);
 				}.bind(this)
-			}
+			}*/
 		};
 		
-		this.categoriaInput.easyAutocomplete(options);
+		this.skuInput.easyAutocomplete(options);
 	}
 	
 	return Autocomplete

@@ -5,11 +5,10 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import br.mil.eb.decex.sisaluno.enumerated.CFGOCurso;
-import br.mil.eb.decex.sisaluno.enumerated.CFGSCurso;
-import br.mil.eb.decex.sisaluno.enumerated.Categoria;
-import br.mil.eb.decex.sisaluno.enumerated.MatBelCurso;
-import br.mil.eb.decex.sisaluno.enumerated.OficiaisCurso;
+import br.mil.eb.decex.sisaluno.enumerated.Linha;
+import br.mil.eb.decex.sisaluno.enumerated.Modalidade;
+import br.mil.eb.decex.sisaluno.enumerated.Universo;
+import br.mil.eb.decex.sisaluno.enumerated.Vinculo;
 
 @Entity
 @Table(name = "curso", schema = "ensino")
@@ -19,27 +18,26 @@ public class CursoDTO implements Serializable{
 	
     private Long codigo;
     private String sku;
-    private Categoria categoria;	
-    private CFGSCurso cfgsCurso;    
-    private CFGOCurso cfgoCurso;    
-    private MatBelCurso matbelCurso;    
-    private OficiaisCurso oficiaisCurso;    
-    private String area;
+    private String modalidade;	
+    private String universo;   
+    private String descricao;    
+    private String linha;    
+    private String vinculo;
+    private String foto;
 	
     
-    public CursoDTO(Long codigo, String sku, Categoria categoria, CFGSCurso cfgsCurso, CFGOCurso cfgoCurso, MatBelCurso matbelCurso,
-    		OficiaisCurso oficiaisCurso, String area) {
+    public CursoDTO(Long codigo, String sku, Modalidade modalidade, Universo universo, String descricao,
+    		Linha linha, Vinculo vinculo, String foto) {
 		
 		this.codigo = codigo;
 		this.sku = sku;
-		this.categoria = categoria;
-		this.cfgsCurso = cfgsCurso;
-		this.cfgoCurso = cfgoCurso;
-		this.matbelCurso = matbelCurso;
-		this.oficiaisCurso = oficiaisCurso;
-		this.area = area;
+		this.modalidade = modalidade.getDescricao();
+		this.universo = universo.getDescricao();
+		this.descricao = descricao;
+		this.linha = linha.getDescricao();
+		this.vinculo = vinculo.getDescricao();	
+		this.foto = foto;	
 	}
-
 
 	public Long getCodigo() {
 		return codigo;
@@ -48,56 +46,53 @@ public class CursoDTO implements Serializable{
 		this.codigo = codigo;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
-	public CFGSCurso getCfgsCurso() {
-		return cfgsCurso;
-	}
-	public void setCfgsCurso(CFGSCurso cfgsCurso) {
-		this.cfgsCurso = cfgsCurso;
-	}
-
-	public CFGOCurso getCfgoCurso() {
-		return cfgoCurso;
-	}
-	public void setCfgoCurso(CFGOCurso cfgoCurso) {
-		this.cfgoCurso = cfgoCurso;
-	}
-
-	public MatBelCurso getMatbelCurso() {
-		return matbelCurso;
-	}
-	public void setMatbelCurso(MatBelCurso matbelCurso) {
-		this.matbelCurso = matbelCurso;
-	}
-
-	public OficiaisCurso getOficiaisCurso() {
-		return oficiaisCurso;
-	}
-	public void setOficiaisCurso(OficiaisCurso oficiaisCurso) {
-		this.oficiaisCurso = oficiaisCurso;
-	}
-
-	public String getArea() {
-		return area;
-	}
-	public void setArea(String area) {
-		this.area = area;
-	}
-
-
 	public String getSku() {
 		return sku;
 	}
-
-
 	public void setSku(String sku) {
 		this.sku = sku;
-	}	
-    
+	}
+
+	public String getModalidade() {
+		return modalidade;
+	}
+	public void setModalidade(String modalidade) {
+		this.modalidade = modalidade;
+	}
+
+	public String getUniverso() {
+		return universo;
+	}
+	public void setUniverso(String universo) {
+		this.universo = universo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getLinha() {
+		return linha;
+	}
+	public void setLinha(String linha) {
+		this.linha = linha;
+	}
+
+	public String getVinculo() {
+		return vinculo;
+	}
+	public void setVinculo(String vinculo) {
+		this.vinculo = vinculo;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}    
+
 }

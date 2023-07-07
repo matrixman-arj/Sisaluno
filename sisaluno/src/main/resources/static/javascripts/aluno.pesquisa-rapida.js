@@ -34,8 +34,9 @@ Sisaluno.PesquisaRapidaAluno = (function() {
 				nome: this.nomeInput.val(),
 				cpf: this.cpfInput.val()
 			}, 
-			success: onPesquisaConcluida.bind(this),
+			success: onPesquisaConcluida.bind(this),			
 			error: onErroPesquisa.bind(this)
+			
 		});
 	}
 	
@@ -50,7 +51,9 @@ Sisaluno.PesquisaRapidaAluno = (function() {
 	} 
 	
 	function onErroPesquisa() {
-		this.mensagemErro.removeClass('hidden');
+		if(cpfInput <= 3 && nomeInput <= 3){
+			this.mensagemErro.removeClass('hidden');
+		}
 	}
 	
 	return PesquisaRapidaAluno;
